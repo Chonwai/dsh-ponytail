@@ -44,10 +44,13 @@ brand can always be added later.
 
 GitHub's repository search reads **name, description and topics by default**; the README only counts
 with `in:readme` ([GitHub docs, searched 2026-11-09](https://docs.github.com/en/search-github/searching-on-github/searching-for-repositories)).
-npm search reads name, description and keywords. So the question is not "is Ponytail in the slug"
-but "does every searchable field still carry it".
+npm search behaves the same way for name, description and keywords — observed through the registry
+search API on 2026-11-09: the packages that rank for "ponytail deepseek harness" carry `ponytail` in
+their keywords and description. So the question is not "is Ponytail in the slug" but "does every
+searchable field still carry it".
 
-Measured on 2026-11-09, the day after the rename (repository is new, 0 stars):
+Baseline, measured on 2026-11-09 **before** the GitHub description gained "Formerly dsh-ponytail"
+(repository is new, 0 stars):
 
 | Query | Matches | Our position |
 |---|---:|---|
@@ -57,6 +60,10 @@ Measured on 2026-11-09, the day after the rename (repository is new, 0 stars):
 | `rein ponytail` | 1 | **1st** |
 | `"Ponytail for DeepSeek Harness"` | 1 | **1st** |
 | `ponytail dsh in:name` | 32 | absent (no Ponytail in the slug) |
+
+After that description update (02:50 CST, same day) the same queries returned `ponytail dsh` → #34 of
+42, `dsh-ponytail` → #35, and `ponytail dsh in:description` → #7 of 17; totals unchanged, positions
+move with stars, links and age.
 
 The honest reading: we are *matchable* through description and topics, but ranked last because the
 repository has no stars, no inbound links and no age. Adding `ponytail` to the slug would put us in
@@ -88,10 +95,12 @@ levers are the ones under our control: npm keywords, registry listings, and inbo
 ### Revisit rule
 
 Track monthly: (1) GitHub rank for `ponytail dsh`, (2) npm search position for `ponytail deepseek
-harness` after the first publish, (3) registry listing, (4) inbound links. If, three months after
-publishing and listing, the default query still leaves us outside the top 20 and npm search does not
-show the package on page one, revisit option B/C or D with data instead of guessing. Until the first
-npm publish, another rename still costs only a reinstall.
+harness` after the first publish, (3) registry listing, (4) inbound links. Tracking lives in the
+monthly BRANDING review; the concrete revisit date is **2027-02-09** (three months after the first
+npm publish and the first registry listing, whichever lands later), earlier if either event slips. At
+that point, if the default query still leaves us outside the top 20 and npm search does not show the
+package on page one, revisit option B/C or D with data instead of guessing. Until the first npm
+publish, another rename still costs only a reinstall.
 
 ## The naming rule for this maintainer
 
