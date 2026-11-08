@@ -31,6 +31,7 @@ package and the scripts are plain Node/POSIX commands.
 npm test          # acceptance gate: offline checks, prints RESULT: PASS
 npm run check     # node --check on lib/ and tests/
 npm run smoke     # offline host + client smoke suites
+npm run test:consumer  # pack the tarball; proves the shipped artifact is complete
 ```
 
 The offline check is the acceptance gate: it must print `RESULT: PASS`. It never

@@ -50,3 +50,6 @@ jobs:
 
       - name: Offline host + client checks
         run: bash tests/offline-check.sh
+
+      - name: Consumer artifact smoke test
+        run: bash tests/consumer-smoke.sh

@@ -169,6 +169,7 @@ is in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
 npm test          # acceptance gate: offline checks, prints RESULT: PASS
 npm run check     # node --check on lib/ and tests/
 npm run smoke     # offline host + client smoke suites
+npm run test:consumer  # pack the tarball and verify what a stranger downloads
 ```
 
 No install step: the repository *is* the package, and the scripts need no dependencies. See

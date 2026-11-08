@@ -43,7 +43,8 @@
   "scripts": {
     "test": "bash tests/offline-check.sh",
     "check": "node --check lib/index.js && node --check lib/client.js && node --check tests/host-smoke.mjs && node --check tests/client-smoke.mjs",
-    "smoke": "node tests/host-smoke.mjs && node tests/client-smoke.mjs"
+    "smoke": "node tests/host-smoke.mjs && node tests/client-smoke.mjs",
+    "test:consumer": "bash tests/consumer-smoke.sh"
   },
   "icon": "./icon.svg",
   "files": [

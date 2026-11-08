@@ -153,6 +153,7 @@ host half 會偵測同名 skills 並跳過＋警告，不會靜默蓋掉檔案�
 npm test          # 驗收閘門：offline checks，最後印出 RESULT: PASS
 npm run check     # node --check（lib/ 與 tests/）
 npm run smoke     # offline host / client smoke
+npm run test:consumer  # pack 成 tarball，驗證陌生人實際下載到的內容
 ```
 
 不需要安裝步驟：這個 repo 本身就是套件，這些 scripts 也不需要任何 dependencies。
