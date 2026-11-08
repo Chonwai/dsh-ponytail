@@ -31,6 +31,11 @@
     "./icon": "./icon.svg",
     "./package.json": "./package.json"
   },
+  "scripts": {
+    "test": "bash tests/offline-check.sh",
+    "check": "node --check lib/index.js && node --check lib/client.js && node --check tests/host-smoke.mjs && node --check tests/client-smoke.mjs",
+    "smoke": "node tests/host-smoke.mjs && node tests/client-smoke.mjs"
+  },
   "icon": "./icon.svg",
   "files": [
     "lib/**/*.js",

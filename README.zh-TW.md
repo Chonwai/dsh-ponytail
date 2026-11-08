@@ -145,13 +145,13 @@ host half 會偵測同名 skills 並跳過＋警告，不會靜默蓋掉檔案�
 ## 開發
 
 ```bash
-node --check lib/index.js && node --check lib/client.js
-node tests/host-smoke.mjs
-node tests/client-smoke.mjs
-bash tests/offline-check.sh      # 驗收閘門，最後印出 RESULT: PASS
+npm test          # 驗收閘門：offline checks，最後印出 RESULT: PASS
+npm run check     # node --check（lib/ 與 tests/）
+npm run smoke     # offline host / client smoke
 ```
 
-不需要安裝步驟：這個 repo 本身就是套件。改動 vendored 檔案前請先讀 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+不需要安裝步驟：這個 repo 本身就是套件，這些 scripts 也不需要任何 dependencies。
+改動 vendored 檔案前請先讀 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 
 ## 回滾
 

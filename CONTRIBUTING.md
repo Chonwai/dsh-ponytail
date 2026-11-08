@@ -21,14 +21,13 @@ half, six vendored skills and one rules document. Please keep it that way.
 ## Development
 
 Requirements: Node.js 22.19+ (or 24+), `python3` with PyYAML for the offline
-checks, and a POSIX shell.
+checks, and a POSIX shell. No `npm install` is needed: the repository *is* the
+package and the scripts are plain Node/POSIX commands.
 
 ```bash
-node --check lib/index.js
-node --check lib/client.js
-node tests/host-smoke.mjs
-node tests/client-smoke.mjs
-bash tests/offline-check.sh
+npm test          # acceptance gate: offline checks, prints RESULT: PASS
+npm run check     # node --check on lib/ and tests/
+npm run smoke     # offline host + client smoke suites
 ```
 
 The offline check is the acceptance gate: it must print `RESULT: PASS`. It never

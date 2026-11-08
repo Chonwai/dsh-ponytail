@@ -159,14 +159,13 @@ Designed for DSH 0.2.2-rc.1. Verified:
 ## Development
 
 ```bash
-node --check lib/index.js && node --check lib/client.js
-node tests/host-smoke.mjs
-node tests/client-smoke.mjs
-bash tests/offline-check.sh      # acceptance gate, prints RESULT: PASS
+npm test          # acceptance gate: offline checks, prints RESULT: PASS
+npm run check     # node --check on lib/ and tests/
+npm run smoke     # offline host + client smoke suites
 ```
 
-No install step: the repository *is* the package. See [`CONTRIBUTING.md`](CONTRIBUTING.md) before
-changing vendored files.
+No install step: the repository *is* the package, and the scripts need no dependencies. See
+[`CONTRIBUTING.md`](CONTRIBUTING.md) before changing vendored files.
 
 ## Rollback
 
