@@ -106,7 +106,7 @@ Observed on DSH 0.2.2-rc.1, `desktop` profile, 2026-11-08, macOS:
 | Plugins listing | `pluginManager.listBundles()` returns the bundle as installed, enabled, removable |
 | Plugins page visual | after a reload the Ponytail card is visible in the desktop Web UI (2026-11-08) |
 | skill load (1.0.0) | `skill("ponytail")` threw `loaded skill "ponytail" source must be a string`; fixed in 1.0.1 |
-| skill load (1.0.1, after bundle off/on) | `skill("ponytail")`, `skill("ponytail-help")`, `skill("ponytail-review")` return `<skill_content>` (provider `runtime`); the other three register through the same code path |
+| skill load (1.0.1, after bundle off/on) | all six `skill("…")` calls return `<skill_content>` (provider `runtime`); an independent verifier loaded each and matched two bodies against the vendored files |
 | module reload | toggling the bundle off/on unloads and remounts the host plugin, so a changed linked module is picked up without an app restart |
 
 ## 5. Migrating from the file-level install

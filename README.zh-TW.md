@@ -97,6 +97,9 @@ Desktop app 的 `desktop` profile 會拒絕 CLI 的 plugin 操作；那裡請用
 - 「ponytail ultra，直接挑戰需求」— 最嗆的等級。
 - 「ponytail debt」— 把所有 `shortcut:` 註解列成技術債清單。
 
+`ponytail-help` 印的是上游說明卡；其中 Claude Code 專屬的部分（`/plugin`、`PONYTAIL_DEFAULT_MODE`、
+band）在 DSH 不適用——DSH 的實情以下面的 v1 限制為準。
+
 **v1 限制**：沒有 level 狀態機（`lite`/`full`/`ultra` 切換），也沒有 `/ponytail off` 指令。
 等級表在 skill 內文，直接告訴模型你要哪個等級；若想停用 always-on 規則，可在 profile 層把
 `config.defaultMode` 改成 `off`（做法見 `INSTALL.md`）。
@@ -133,8 +136,8 @@ host half 會偵測同名 skills 並跳過＋警告，不會靜默蓋掉檔案�
   bundle 被列為 installed／enabled／removable；6 個 skills 出現在 session catalog；`rules.md`
   以一個 system-prompt section 注入；client 在 `conversation.composer.dock` 註冊 `ponytail`
   occupant（order 2）。
-- Skill 載入：1.0.1 修好後，`skill("ponytail")`、`skill("ponytail-help")`、`skill("ponytail-review")`
-  都回傳完整內容（provider `runtime`）；另外三個走同一條註冊路徑。
+- Skill 載入：1.0.1 修好後，六個 `skill("…")` 都回傳完整內容（provider `runtime`；
+  獨立驗證者逐一載入並比對其中兩個 body 與 vendored 檔一致）。
 - Plugins 頁：重新整理後，desktop Web UI 已可看到 Ponytail 卡（同一個 0.2.2-rc.1 desktop
   profile 實測）。未做截圖驗證：膠囊像素——slot occupant 已 live，但沒有截到實際畫面。
   疑難排解見 `INSTALL.md`。

@@ -105,6 +105,9 @@ Examples (a skill loads for the step that needs it; the scoped rules are the onl
 - `ponytail ultra, challenge the requirements` — blunt level.
 - `ponytail debt` — every `shortcut:` comment as a debt ledger.
 
+`ponytail-help` prints the upstream reference card; its Claude Code-only parts (`/plugin`,
+`PONYTAIL_DEFAULT_MODE`, the band) do not apply in DSH — the v1 limitation below is the DSH truth.
+
 **v1 limitation:** there is no level state machine (`lite`/`full`/`ultra` switching) and no
 `/ponytail off` command. The level table lives in the skill body; tell the model which level you
 want, or override `config.defaultMode` to `off` at the profile level (see `INSTALL.md`) to
@@ -147,9 +150,8 @@ Designed for DSH 0.2.2-rc.1. Verified:
   `application: "applied"`; the bundle is listed as installed/enabled/removable; the six skills
   appear in the session catalog; `rules.md` appears as one system-prompt section; the client
   registers the `ponytail` occupant (order 2) in `conversation.composer.dock`.
-- Skill loading: after the 1.0.1 fix, `skill("ponytail")`, `skill("ponytail-help")` and
-  `skill("ponytail-review")` return their bodies as runtime skills; the other three use the same
-  registration path.
+- Skill loading: after the 1.0.1 fix all six `skill("…")` calls return their bodies as runtime
+  skills (independently verified, two bodies matched byte-trimmed against the vendored files).
 - Plugins page: after a reload the Ponytail card is visible in the desktop Web UI (confirmed on the
   same 0.2.2-rc.1 desktop profile). Not screenshot-verified: the pill's pixels — its slot occupant
   is live, but the drawing itself was not captured. Details and troubleshooting in `INSTALL.md`.

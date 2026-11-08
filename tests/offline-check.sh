@@ -91,6 +91,8 @@ for field in name version description license author homepage repository.url bug
 done
 [ "$(manifest_value name)" = "@chonwai/dsh-ponytail" ] && ok "package name is @chonwai/dsh-ponytail" || bad "package name is wrong"
 [ "$(manifest_value version)" = "1.0.1" ] && ok "package version is 1.0.1" || bad "package version is not 1.0.1"
+lib_version=$(grep -oE "export const version = '[^']+'" "$PACKAGE_DIR/lib/index.js" | sed -E "s/.*'([^']+)'/\1/")
+[ "$lib_version" = "$(manifest_value version)" ] && ok "lib/index.js version matches package.json" || bad "lib/index.js version (${lib_version:-missing}) does not match package.json"
 [ "$(manifest_value license)" = "MIT" ] && ok "package license is MIT" || bad "package license is not MIT"
 if node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8"));process.exit(Object.keys(p.dependencies||{}).length===0?0:1)' "$PACKAGE_DIR/package.json"; then
   ok "package has no runtime dependencies"
