@@ -115,7 +115,7 @@ band）在 DSH 不適用——DSH 的實情以下面的 v1 限制為準。
 3. 把 bundle row off/on（或重啟 DSH），讓 duplicate detection 在乾淨的 catalog 上重跑。
 
 host half 會偵測同名 skills 並跳過＋警告，不會靜默蓋掉檔案版。完整清單見
-[`INSTALL.md`](INSTALL.md#從檔案版安裝遷移)。
+[`INSTALL.md`](INSTALL.md#6-migrating-from-the-file-level-install)。
 
 ## 安全與隱私
 

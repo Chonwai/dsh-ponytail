@@ -128,7 +128,7 @@ remove them **before** enabling this bundle:
    catalog.
 
 The host half detects same-name skills and skips them with a warning rather than silently shadowing
-the file-level copies. Full checklist: [`INSTALL.md`](INSTALL.md#migrating-from-the-file-level-install).
+the file-level copies. Full checklist: [`INSTALL.md`](INSTALL.md#6-migrating-from-the-file-level-install).
 
 ## Security and privacy
 
