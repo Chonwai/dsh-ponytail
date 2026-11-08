@@ -3,6 +3,9 @@
 Thanks for helping. This package is intentionally small: a host half, a client
 half, six vendored skills and one rules document. Please keep it that way.
 
+New to the code? Read [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) first: it
+covers the two halves, the skill load contract and what the row toggle does.
+
 ## Ground rules
 
 - **No runtime dependencies.** The bundle must install and run from a plain
