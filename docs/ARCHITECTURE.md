@@ -71,7 +71,7 @@ slot is unavailable the half degrades to nothing; it can never break the host UI
 |---|---|
 | Install + enable bundle | patch layer applied, row `ponytail` activates, host half registers skills + rules |
 | Web client boots | client module loads, pill registered in the composer dock |
-| Disable bundle (Plugins toggle) | host half disposes: skills disappear from the catalog, rules section is removed; pill disappears with the client module generation |
+| Disable bundle (Plugins toggle) | host half disposes: skills disappear from the catalog, rules section is removed. The client half only changes on a Web client load, so an already-open page may keep the pill until a reload |
 | Remove bundle | dependency and layer removed; nothing of the package keeps running |
 | Change a linked local package | the process may keep the earlier module generation; toggle the bundle off/on (or restart) to remount the host half — see INSTALL.md §7 |
 
