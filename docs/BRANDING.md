@@ -56,25 +56,27 @@ brand can always be added later.
 1. GitHub profile repository `Chonwai/Chonwai` (currently absent): who you are, what you ship, the
    bundle, the verification protocol, the releases. Pin `dsh-rein`.
 2. Submit the bundle to the community registry `dshworks/awesome-dsh-plugins` — it listed no
-   Ponytail entry at all on 2026-11-09. One PR against `data/plugins.json`:
+   Ponytail entry at all on 2026-11-09. One PR against `data/plugins.json`, with the entry below.
 
-   ```json
-   {
-     "name": "Rein — Ponytail for DeepSeek Harness",
-     "repo": "Chonwai/dsh-rein",
-     "description": "Ponytail lazy senior dev mode as a DSH bundle: six skills, scoped always-on rules and a composer pill, with a four-level verification protocol.",
-     "category": "bundle",
-     "tags": ["capabilities"],
-     "added": "2026-11-09",
-     "lastVerified": "2026-11-09",
-     "verifiedAgainst": "0.2.2-rc.1",
-     "status": "verified",
-     "evidence": "package.json#dsh.bundle"
-   }
-   ```
+Its spam gate asks for a real install path, a non-template history and an honest `verifiedAgainst`;
+all three are true here.
 
-   Its spam gate asks for a real install path, a non-template history and an honest
-   `verifiedAgainst`; all three are true here.
+### Registry entry (copy-paste)
+
+```json
+{
+  "name": "Rein — Ponytail for DeepSeek Harness",
+  "repo": "Chonwai/dsh-rein",
+  "description": "Ponytail lazy senior dev mode as a DSH bundle: six skills, scoped always-on rules and a composer pill, with a four-level verification protocol.",
+  "category": "bundle",
+  "tags": ["capabilities"],
+  "added": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "verifiedAgainst": "0.2.2-rc.1",
+  "status": "verified",
+  "evidence": "package.json#dsh.bundle"
+}
+```
 3. Record a short demo: Plugins card → `/ponytail` loads → a smaller diff in one task.
 4. Release notes carry evidence, not adjectives.
 
