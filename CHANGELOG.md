@@ -4,6 +4,27 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project uses
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-11-08
+
+### Fixed
+
+- **Skills were listed but could not be loaded.** `skills.register()` accepts a
+  definition without `source`, but the load path (`skills.get()` →
+  `validateDefinition`) rejects it, so `skill("ponytail")` and the `/ponytail`
+  gesture threw `loaded skill "..." source must be a string`. The host half now
+  passes `source: "bundled"`.
+- `tests/host-smoke.mjs` asserts the registration payload against the load-path
+  contract (`source` as a non-empty string), so the regression cannot pass CI
+  silently again.
+
+### Changed
+
+- `engines.dsh` narrowed to the tested window: `>=0.2.2-rc.1 <0.3.0`.
+- `private: true` — installable from a local path, but not publishable to npm
+  until a deliberate release.
+- Docs: real always-on payload (3,998 B `rules.md`), load verification recorded,
+  migration note corrected.
+
 ## [1.0.0] - 2026-11-08
 
 ### Added

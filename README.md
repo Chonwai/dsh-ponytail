@@ -32,7 +32,8 @@ bundle is for people who want the plugin lifecycle, the Plugins page presence, a
   `ponytail-help`.
 - **Scoped always-on rules** injected as one system-prompt section (order 700) from `rules.md`:
   Ponytail's rules apply to **code changes only**; research, documents, reviews and analysis must
-  stay complete. `config.defaultMode: off` suppresses the rules while keeping the skills.
+  stay complete. `config.defaultMode: off` suppresses the rules while keeping the skills. The
+  section is 3,998 B, charged to every request in the profile.
 - **A non-interactive "Ponytail" status pill** in `conversation.composer.dock` (id `ponytail`,
   order 2), themed with `--dsw-*` tokens, `pointer-events: none`.
 - **Plugin-page metadata**: `locale/en.json` and `locale/zh.json` titles/descriptions/details and
@@ -44,7 +45,7 @@ bundle is for people who want the plugin lifecycle, the Plugins page presence, a
 
 ## Requirements
 
-- DeepSeek Harness **0.2.2-rc.1** (declared `engines.dsh: ">=0.2.2-alpha.3 <0.3.0"`).
+- DeepSeek Harness **0.2.2-rc.1** (declared `engines.dsh: ">=0.2.2-rc.1 <0.3.0"`).
 - Node.js `^22.19.0 || >=24.0.0` (inherited from the Harness).
 - A DSH **profile with a managed profile directory** (the Desktop app or a CLI-managed profile).
   The Desktop app's `desktop` profile is managed exclusively by the app: install through the
@@ -79,7 +80,8 @@ dsh plugin add /abs/path/to/dsh-ponytail
 
 The Desktop app's `desktop` profile rejects CLI plugin operations; use way 1 or 2 there.
 
-A future release will be publishable as `@chonwai/dsh-ponytail`; then `dsh plugin add
+The package is marked `private` until a deliberate npm release, so install from a local checkout.
+Once that flag is removed and the package is published as `@chonwai/dsh-ponytail`, `dsh plugin add
 @chonwai/dsh-ponytail` (or the Plugins page's search field) will work without a local checkout.
 
 ## Usage

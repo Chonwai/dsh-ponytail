@@ -132,6 +132,29 @@ await check('mount registers six skills and one rules section', async () => {
   assert.ok(text.includes('github.com/DietrichGebert/ponytail'), 'rules text must keep attribution');
 });
 
+// 2b. The registration payload must survive dsh-skill's load-path validator.
+// register() only checks name/description/invocation; skills.get() additionally
+// requires a string source and provider before the skill tool or /name returns it.
+await check('registration payload is loadable (source, name, description, content)', async () => {
+  const skills = fakeSkills([]);
+  const prompt = fakeSystemPrompt();
+  const { ctx } = fakeContext({ skills: skills.service, systemPrompt: prompt.service });
+  apply(ctx, undefined);
+  await tick(60);
+  assert.equal(skills.registered.length, 6);
+  for (const skill of skills.registered) {
+    assert.match(skill.name, /^[a-z0-9]+(?:-[a-z0-9]+)*$/, `${skill.name}: invalid skill name`);
+    assert.equal(typeof skill.description, 'string', `${skill.name}: description must be a string`);
+    assert.ok(skill.description.length > 0, `${skill.name}: description is empty`);
+    assert.equal(typeof skill.source, 'string', `${skill.name}: source must be a string (load path rejects it otherwise)`);
+    assert.ok(skill.source.length > 0, `${skill.name}: source is empty`);
+    assert.equal(typeof skill.content, 'string', `${skill.name}: content must be a string`);
+    assert.ok(skill.content.length > 100, `${skill.name}: body is too short`);
+    // register() defaults the provider; only assert an explicit one stays a string.
+    if (skill.provider !== undefined) assert.equal(typeof skill.provider, 'string');
+  }
+});
+
 // 3. Duplicate names are skipped with a migration warning.
 await check('duplicate names are skipped with a migration warning', async () => {
   const skills = fakeSkills([{ name: 'ponytail' }, { name: 'ponytail-review' }]);
@@ -207,7 +230,7 @@ await check('frontmatter parser handles all six vendored files', () => {
 await check('module surface matches the v1 contract (no Config export)', async () => {
   const module = await import('../lib/index.js');
   assert.equal(pluginName, 'ponytail');
-  assert.equal(pluginVersion, '1.0.0');
+  assert.equal(pluginVersion, '1.0.1');
   assert.deepEqual(LEVELS, ['lite', 'full', 'ultra', 'review', 'off']);
   assert.equal(typeof apply, 'function');
   assert.ok(!('Config' in module), 'v1 must not export a Config schema');

@@ -119,7 +119,8 @@ Checklist, in order:
 - [ ] 1. Decide who owns the always-on rules.
       **Bundle** = global system-prompt section for every session in the profile.
       **`AGENTS.md` block** = per repository only.
-      Keep one; two copies duplicate roughly 2.7 KB of prompt text per request.
+      Keep one: the upstream `AGENTS.md` block is 2,721 B and this bundle's `rules.md` is
+      3,998 B, so two copies cost both on every request.
 - [ ] 2. Remove the file-level skills: move the six `ponytail*` directories out of the skill roots
       instead of deleting them blindly (and back them up first if you edited them):
       ```bash

@@ -29,7 +29,8 @@ Plugins 頁曝光與狀態膠囊的人。
   `ponytail`、`ponytail-review`、`ponytail-audit`、`ponytail-debt`、`ponytail-gain`、`ponytail-help`。
 - **有 scope 的 always-on 規則**：以 system-prompt section（order 700）注入 `rules.md`。
   Ponytail 規則**只約束程式碼改動**；研究、文件、審查、分析必須完整。
-  `config.defaultMode: off` 會停用規則注入，但 skills 仍在。
+  `config.defaultMode: off` 會停用規則注入，但 skills 仍在。這個 section 是 3,998 B，
+  profile 內每個 request 都會帶上。
 - **非互動的「Ponytail」狀態膠囊**：`conversation.composer.dock`（id `ponytail`、order 2），
   使用 `--dsw-*` theme token、`pointer-events: none`。
 - **Plugins 頁 metadata**：`locale/en.json`、`locale/zh.json` 的 title/description/detail，
@@ -39,7 +40,7 @@ Plugins 頁曝光與狀態膠囊的人。
 
 ## 需求
 
-- DeepSeek Harness **0.2.2-rc.1**（宣告 `engines.dsh: ">=0.2.2-alpha.3 <0.3.0"`）。
+- DeepSeek Harness **0.2.2-rc.1**（宣告 `engines.dsh: ">=0.2.2-rc.1 <0.3.0"`）。
 - Node.js `^22.19.0 || >=24.0.0`（跟 Harness 一致）。
 - 有 managed profile 的 DSH profile（Desktop app 或 CLI 管理的 profile）。
   Desktop app 的 `desktop` profile 由 app 獨佔管理：請走 Web **Plugins** 頁或 `plugin_manager`，
@@ -73,8 +74,8 @@ dsh plugin add /abs/path/to/dsh-ponytail
 
 Desktop app 的 `desktop` profile 會拒絕 CLI 的 plugin 操作；那裡請用方式 1 或 2。
 
-未來會以 `@chonwai/dsh-ponytail` 發佈到 npm；屆時可直接 `dsh plugin add @chonwai/dsh-ponytail`
-或在 Plugins 頁搜尋，不必本地 checkout。
+套件目前標記 `private`（避免誤發 npm）；先從本地 checkout 安裝。等正式發佈、拿掉這個旗標後，
+可直接 `dsh plugin add @chonwai/dsh-ponytail` 或在 Plugins 頁搜尋，不必本地 checkout。
 
 ## 使用
 

@@ -90,7 +90,7 @@ for field in name version description license author homepage repository.url bug
   if [ "$(manifest "$field")" = "yes" ]; then ok "package.json has $field"; else bad "package.json is missing $field"; fi
 done
 [ "$(manifest_value name)" = "@chonwai/dsh-ponytail" ] && ok "package name is @chonwai/dsh-ponytail" || bad "package name is wrong"
-[ "$(manifest_value version)" = "1.0.0" ] && ok "package version is 1.0.0" || bad "package version is not 1.0.0"
+[ "$(manifest_value version)" = "1.0.1" ] && ok "package version is 1.0.1" || bad "package version is not 1.0.1"
 [ "$(manifest_value license)" = "MIT" ] && ok "package license is MIT" || bad "package license is not MIT"
 if node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8"));process.exit(Object.keys(p.dependencies||{}).length===0?0:1)' "$PACKAGE_DIR/package.json"; then
   ok "package has no runtime dependencies"
