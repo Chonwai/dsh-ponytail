@@ -173,7 +173,8 @@ npm run test:consumer  # pack the tarball and verify what a stranger downloads
 ```
 
 No install step: the repository *is* the package, and the scripts need no dependencies. See
-[`CONTRIBUTING.md`](CONTRIBUTING.md) before changing vendored files.
+[`CONTRIBUTING.md`](CONTRIBUTING.md) before changing vendored files. First publish, listings and the
+definition of done: [`docs/RELEASE.md`](docs/RELEASE.md).
 
 ## Rollback
 

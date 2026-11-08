@@ -157,7 +157,8 @@ npm run test:consumer  # pack 成 tarball，驗證陌生人實際下載到的內
 ```
 
 不需要安裝步驟：這個 repo 本身就是套件，這些 scripts 也不需要任何 dependencies。
-改動 vendored 檔案前請先讀 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+改動 vendored 檔案前請先讀 [`CONTRIBUTING.md`](CONTRIBUTING.md)。第一次發佈、上架清單與完成定義見
+[`docs/RELEASE.md`](docs/RELEASE.md)。
 
 ## 回滾
 
