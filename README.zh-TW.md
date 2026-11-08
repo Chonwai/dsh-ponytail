@@ -11,7 +11,7 @@ MIT、無 runtime dependencies。
 獨立社群整合：與上游 Ponytail 專案及 DeepSeek 均無隸屬或背書關係。
 
 Ponytail（上游：[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)）是一套
-「懶人資深工程師」指令集：用最小的改動完整解決問題、不做沒人要求的東西，但绝不省略驗證、
+「懶人資深工程師」指令集：用最小的改動完整解決問題、不做沒人要求的東西，但絕不省略驗證、
 錯誤處理、安全與無障礙。這個 bundle 把上游 v5.3.3 的 skills 與規則打包給 DeepSeek Harness（DSH）。
 
 ## 為什麼要用 bundle，而不是散裝檔案
