@@ -6,7 +6,7 @@ which contracts each half must satisfy, and what happens when the row is toggled
 ## The shape
 
 ```
-cordis.patch.yml           one `insert` row: id `ponytail`, name `@chonwai/dsh-ponytail`
+cordis.patch.yml           one `insert` row: id `ponytail`, name `@chonwai/dsh-rein`
 lib/index.js               host half, runs when the row activates
 lib/client.js              client half, runs when the Web client boots
 skills/<name>/SKILL.md     six vendored Ponytail skills (upstream v5.3.3)
@@ -32,7 +32,7 @@ copies, and local behavior lives in `rules.md` and the plugin code (see `NOTICE`
    owns, warning with the migration step instead of shadowing it. Catalog read failures must never
    disable the bundle; registration then proceeds blind.
 2. **Rules.** It reads `rules.md` once and contributes one prompt section through
-   `ctx.systemPrompt.section({ name: 'ponytail-rules', order: 700, text })`. `text` is a function so
+   `ctx.systemPrompt.section({ name: 'rein-rules', order: 700, text })`. `text` is a function so
    `defaultMode: 'off'` takes effect on the next assembly; the skills stay registered.
 
 `ctx.get(service)` covers a service that is already mounted; `ctx.inject([service])` covers one that
@@ -57,7 +57,7 @@ contract so the regression cannot pass CI again.
 A dynamic client module in the documented wrapper form:
 
 ```js
-window.__ModuleLoader__.load({ id: '@chonwai/dsh-ponytail', factory(require) { /* ... */ } })
+window.__ModuleLoader__.load({ id: '@chonwai/dsh-rein', factory(require) { /* ... */ } })
 ```
 
 It registers one occupant in `conversation.composer.dock` — id `ponytail`, order 2 — and renders a
@@ -69,7 +69,7 @@ slot is unavailable the half degrades to nothing; it can never break the host UI
 
 | Event | Effect |
 |---|---|
-| Install + enable bundle | patch layer applied, row `ponytail` activates, host half registers skills + rules |
+| Install + enable bundle | patch layer applied, row `rein` activates, host half registers skills + rules |
 | Web client boots | client module loads, pill registered in the composer dock |
 | Disable bundle (Plugins toggle) | host half disposes: skills disappear from the catalog, rules section is removed. The client half only changes on a Web client load, so an already-open page may keep the pill until a reload |
 | Remove bundle | dependency and layer removed; nothing of the package keeps running |

@@ -1,12 +1,9 @@
-# Ponytail for DeepSeek Harness
+# Rein
 
-[![CI](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml/badge.svg)](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Latest release](https://img.shields.io/github/v/release/Chonwai/dsh-ponytail)](https://github.com/Chonwai/dsh-ponytail/releases)
-
-`@chonwai/dsh-ponytail` — 由 **Chonwai** 維護的 DeepSeek Harness bundle：6 個 skills、一份有 scope 的
-always-on 規則，加上輸入框 dock 裡一顆小小的「Ponytail」狀態膠囊；可在 Plugins 頁安裝與移除。
-MIT、無 runtime dependencies。
+**Ponytail for DeepSeek Harness，由 Chonwai 維護。** `@chonwai/dsh-rein` 是經過驗證、可反轉的
+DeepSeek Harness bundle：6 個上游 Ponytail skills、一份有 scope 的 always-on 規則，加上輸入框 dock
+裡一顆小小的「Ponytail」狀態膠囊；可在 Plugins 頁安裝與移除。MIT、無 runtime dependencies。
+舊名 `@chonwai/dsh-ponytail`；改名原因見 [`docs/BRANDING.md`](docs/BRANDING.md)。
 
 獨立社群整合：與上游 Ponytail 專案及 DeepSeek 均無隸屬或背書關係。
 
@@ -57,14 +54,14 @@ Plugins 頁曝光與狀態膠囊的人。
 ### 1. Plugins 頁（本機 checkout 推薦）
 
 1. DSH → **Plugins** → **Add plugin**。
-2. 選 **Install a third-party plugin**，貼這個目錄的絕對路徑（例：`/Users/you/code/dsh-ponytail`）。
+2. 選 **Install a third-party plugin**，貼這個目錄的絕對路徑（例：`/Users/you/code/dsh-rein`）。
 3. 確認信任提示 → **Install**；若出現 **Enable now** 就按下。
 4. 重開或新開 session。驗證與疑難排解見 [`INSTALL.md`](INSTALL.md)。
 
 ### 2. `plugin_manager`（agent 驅動，需 Full access）
 
 ```
-plugin_manager(action: "install_bundle", target: "/abs/path/to/dsh-ponytail")
+plugin_manager(action: "install_bundle", target: "/abs/path/to/dsh-rein")
 ```
 
 這個工具會對 profile 跑 pnpm——每個 `plugin_manager` action 都需要 Full access 或 approval。
@@ -73,13 +70,13 @@ plugin_manager(action: "install_bundle", target: "/abs/path/to/dsh-ponytail")
 ### 3. CLI（僅限 CLI 管理的 profile）
 
 ```bash
-dsh plugin add /abs/path/to/dsh-ponytail
+dsh plugin add /abs/path/to/dsh-rein
 ```
 
 Desktop app 的 `desktop` profile 會拒絕 CLI 的 plugin 操作；那裡請用方式 1 或 2。
 
 套件目前標記 `private`（避免誤發 npm）；先從本地 checkout 安裝。等正式發佈、拿掉這個旗標後，
-可直接 `dsh plugin add @chonwai/dsh-ponytail` 或在 Plugins 頁搜尋，不必本地 checkout。
+可直接 `dsh plugin add @chonwai/dsh-rein` 或在 Plugins 頁搜尋，不必本地 checkout。
 
 ## 使用
 
@@ -170,7 +167,7 @@ npm run smoke     # offline host / client smoke
 ```
 lib/index.js          host half（skills + prompt section）
 lib/client.js         client half（composer-dock 膠囊）
-cordis.patch.yml      單一 insert row：id ponytail -> @chonwai/dsh-ponytail
+cordis.patch.yml      單一 insert row：id rein -> @chonwai/dsh-rein
 skills/<6>/SKILL.md   vendored Ponytail v5.3.3 skills（byte-identical）
 rules.md              注入 system prompt 的 scoped 規則
 locale/{en,zh}.json   Plugins 頁 title/description/detail

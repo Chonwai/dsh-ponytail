@@ -28,7 +28,7 @@ rules document) plus a small host plugin and a client decoration.
 
 Please **do not open a public issue** for a security report. Use GitHub's
 private vulnerability reporting on
-https://github.com/Chonwai/dsh-ponytail/security/advisories/new (or email the
+https://github.com/Chonwai/dsh-rein/security/advisories/new (or email the
 maintainer listed in `package.json` if that is unavailable). Include:
 
 - affected version / commit,

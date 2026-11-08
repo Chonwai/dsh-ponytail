@@ -1,12 +1,10 @@
-# Ponytail for DeepSeek Harness
+# Rein
 
-[![CI](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml/badge.svg)](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Latest release](https://img.shields.io/github/v/release/Chonwai/dsh-ponytail)](https://github.com/Chonwai/dsh-ponytail/releases)
-
-`@chonwai/dsh-ponytail` — a verified, reversible DeepSeek Harness bundle by **Chonwai**. Six skills,
-one scoped always-on ruleset, and a small "Ponytail" pill in the composer dock; installable from the
-Plugins page, removable from the same place. MIT, no runtime dependencies.
+**Ponytail for DeepSeek Harness, by Chonwai.** `@chonwai/dsh-rein` is a verified, reversible DSH
+bundle: six upstream Ponytail skills, one scoped always-on ruleset, and a small "Ponytail" pill in
+the composer dock. Installable from the Plugins page, removable from the same place; MIT, no runtime
+dependencies. Formerly `@chonwai/dsh-ponytail` — see [`docs/BRANDING.md`](docs/BRANDING.md) for why
+the name changed.
 
 An independent community integration: not affiliated with or endorsed by the upstream Ponytail
 project or by DeepSeek.
@@ -63,14 +61,14 @@ Three ways, in order of convenience:
 
 1. Open DSH → **Plugins** → **Add plugin**.
 2. Choose **Install a third-party plugin** and paste the absolute path of this directory,
-   e.g. `/Users/you/code/dsh-ponytail`.
+   e.g. `/Users/you/code/dsh-rein`.
 3. Confirm the trust prompt and **Install**, then **Enable now** if asked.
 4. Reload / reopen a session. See [`INSTALL.md`](INSTALL.md) for verification and troubleshooting.
 
 ### 2. `plugin_manager` (agent-driven, needs Full access)
 
 ```
-plugin_manager(action: "install_bundle", target: "/abs/path/to/dsh-ponytail")
+plugin_manager(action: "install_bundle", target: "/abs/path/to/dsh-rein")
 ```
 
 The tool runs pnpm against the profile — every `plugin_manager` action needs Full access or
@@ -79,14 +77,14 @@ approval. This package has no dependencies and no install scripts, so no build a
 ### 3. CLI (CLI-managed profiles only)
 
 ```bash
-dsh plugin add /abs/path/to/dsh-ponytail
+dsh plugin add /abs/path/to/dsh-rein
 ```
 
 The Desktop app's `desktop` profile rejects CLI plugin operations; use way 1 or 2 there.
 
 The package is marked `private` until a deliberate npm release, so install from a local checkout.
-Once that flag is removed and the package is published as `@chonwai/dsh-ponytail`, `dsh plugin add
-@chonwai/dsh-ponytail` (or the Plugins page's search field) will work without a local checkout.
+Once that flag is removed and the package is published as `@chonwai/dsh-rein`, `dsh plugin add
+@chonwai/dsh-rein` (or the Plugins page's search field) will work without a local checkout.
 
 ## Usage
 
@@ -185,7 +183,7 @@ No install step: the repository *is* the package, and the scripts need no depend
 ```
 lib/index.js          host half (skills + prompt section)
 lib/client.js         client half (composer-dock pill)
-cordis.patch.yml      one insert row: id ponytail -> @chonwai/dsh-ponytail
+cordis.patch.yml      one insert row: id rein -> @chonwai/dsh-rein
 skills/<6>/SKILL.md   vendored Ponytail v5.3.3 skills (byte-identical)
 rules.md              scoped rules injected as a prompt section
 locale/{en,zh}.json   plugin-page title/description/detail

@@ -1,63 +1,67 @@
 # Naming and branding
 
-Decision recorded 2026-11-09. Availability checks were run on that date with `npm view` and
-`gh search repos`; they say what was visible then, not what can be trademarked.
+Decision recorded 2026-11-09, revised the same day after the naming study in
+`ponytail-research/branding/NAMING.md` (maintainer workspace). Availability checks used `npm view`,
+the npm registry HTTP API and `gh search repos`; they describe what was visible on that date, not
+trademark clearance.
 
 ## The decision
 
-| Thing | Name | Change now? |
+| Thing | Name | |
 |---|---|---|
-| npm package | `@chonwai/dsh-ponytail` | **No** — the scoped name is the ownable asset |
-| GitHub repository | `Chonwai/dsh-ponytail` | **No** — already linked from the release and registry drafts |
-| Display name | **Ponytail for DeepSeek Harness** | **Yes** — use it in the README hero, the GitHub description and registry entries |
-| Maintainer brand | **Chonwai** | **Yes** — `@chonwai` scope, byline, future `@chonwai/dsh-*` family |
-| Skills | `ponytail`, `ponytail-review`, … | **Never** — byte-identical upstream content; renaming breaks the pin and the docs |
-| Upstream attribution | `NOTICE` + README | **Never remove** — MIT requires the notice; honesty requires the "independent" line |
+| npm package | `@chonwai/dsh-rein` | renamed from `@chonwai/dsh-ponytail` before the first publish |
+| GitHub repository | `Chonwai/dsh-rein` | renamed; GitHub redirects the old URL |
+| Display name | **Rein — Ponytail for DeepSeek Harness** | README hero, locale title, registry entries |
+| Bundle row id | `rein` (prompt section `rein-rules`) | renamed in `cordis.patch.yml` and the host half |
+| Maintainer brand | **Chonwai** | `@chonwai` scope, byline, future `@chonwai/dsh-*` family |
+| Skills, user gestures, pill text | `ponytail*`, `/ponytail*`, "Ponytail" | **never renamed** — upstream content, MIT |
+| Upstream attribution | `NOTICE` + README | **never removed** |
 
-One sentence used everywhere: *"Ponytail for DeepSeek Harness — a verified, reversible bundle by
-Chonwai: six skills, a scoped always-on ruleset and a composer pill, MIT, no dependencies."*
+One sentence used everywhere: *"Rein — Ponytail for DeepSeek Harness: a verified, reversible bundle
+by Chonwai. Six skills, a scoped always-on ruleset, a composer pill; MIT, no dependencies."*
 
-## Why not a distinct product name
+## Why the rename (evidence, 2026-11-09)
 
-The category is already crowded, and the names are gone:
+- GitHub has **19 repositories named exactly `dsh-ponytail`** (the largest has 40 stars). Ours was
+  the 19th; a slug cannot become an identity inside that crowd.
+- npm has `dsh-ponytail` (0.2.0) and `ponytail-dsh` (0.1.0), both other ports. The stand-alone words
+  `saddle`, `bridle`, `pony-express`, `farrier` and `lasso` are taken as npm names as well.
+- `dsh-rein` / `@chonwai/dsh-rein` were free (registry 404, no exact-name repository). The name reads
+  as "rein in over-engineering" and continues the pony/horse-gear metaphor without claiming the
+  upstream project.
+- The rename window is cheap only now: the package was unpublished (`private: true`) and the
+  repository had no inbound links. After an npm publish a package cannot be renamed, only replaced.
 
-| Name | State on 2026-11-09 |
-|---|---|
-| npm `dsh-ponytail` | taken — 0.2.0, published 2026-08-15 by a different author, no repo link |
-| npm `ponytail-dsh` | taken — 0.1.0, repo `52sujiu/ponytail-dsh` |
-| GitHub `clawsu/ponytail-dsh`, `HosisoraLing/ponytail-dsh` | taken — other DSH ports |
-| `ziduup/dsh-programming-mode` | taken — bundles Superpowers + Ponytail |
-| npm `saddle` / `bridle` / `pony-express` / `farrier` / `lasso` | all taken (0.9.7 / 1.0.2 / 1.1.4 / 0.7.0 / 4.0.4) |
+## What the study compared
 
-An invented name would lose the two search terms people actually type ("ponytail", "dsh") and would
-risk implying an official relationship with the upstream project. The scoped descriptive name is the
-only option that is both available and discoverable. What differentiates this port is not the name:
-it is the verification protocol, the reversibility, and the honesty about what is and is not proven.
+Three candidates were scored against seven criteria (searchability, ownability, clarity, confusion
+and trademark risk, ecosystem convention, rename cost, brand extensibility): **Rein 83.0**, keeping
+the old name with a display brand 81.0, **Farrier 80.0**. The gap between the first two is small; the
+deciding factor was ownability, because a 19-way collision cannot be undone later while a display
+brand can always be added later.
 
 ## The naming rule for this maintainer
 
-- npm packages: `@chonwai/dsh-<capability>` — e.g. `@chonwai/dsh-ponytail`. The scope is yours; the
-  `dsh-` prefix is the ecosystem's discovery convention.
-- repositories: `Chonwai/dsh-<capability>`.
-- display name: `<Upstream tool> for DeepSeek Harness`, never the upstream name alone and never
-  "official".
-- versions: plain semver, one release per behavior change; chores land on `main` without a release.
+- npm packages: `@chonwai/dsh-<product>`; repositories `Chonwai/dsh-<product>`.
+- Display names are sentence-case human phrases (`Rein — Ponytail for DeepSeek Harness`), which is
+  how the official bundles present themselves; the technical name stays kebab-case.
+- One-word product names in the same metaphor are allowed if they pass the availability check
+  (`dsh-farrier` was screened as the fallback).
+- Never name a package after the upstream project alone, and never claim "official".
 
 ## Personal branding plan
 
 **First 30 days**
 
-1. Create the profile repository `Chonwai/Chonwai` with a six-line README: who you are, what you
-   ship, the bundle, the verification protocol, and a link to the releases. Pin the bundle repo.
-2. Set the GitHub description to the one-liner above; keep the six topics
-   (`deepseek-harness`, `dsh`, `dsh-bundle`, `ponytail`, `ai-agent`, `skills`).
-3. Submit the bundle to the community registry `dshworks/awesome-dsh-plugins` (it currently lists no
-   Ponytail entry at all). One PR against `data/plugins.json`:
+1. GitHub profile repository `Chonwai/Chonwai` (currently absent): who you are, what you ship, the
+   bundle, the verification protocol, the releases. Pin `dsh-rein`.
+2. Submit the bundle to the community registry `dshworks/awesome-dsh-plugins` — it listed no
+   Ponytail entry at all on 2026-11-09. One PR against `data/plugins.json`:
 
    ```json
    {
-     "name": "Ponytail for DeepSeek Harness",
-     "repo": "Chonwai/dsh-ponytail",
+     "name": "Rein — Ponytail for DeepSeek Harness",
+     "repo": "Chonwai/dsh-rein",
      "description": "Ponytail lazy senior dev mode as a DSH bundle: six skills, scoped always-on rules and a composer pill, with a four-level verification protocol.",
      "category": "bundle",
      "tags": ["capabilities"],
@@ -69,37 +73,39 @@ it is the verification protocol, the reversibility, and the honesty about what i
    }
    ```
 
-   The registry's spam gate wants a real install path (we have `dsh.bundle`), a non-template history
-   (we have a real commit history and a test suite) and honest `verifiedAgainst`; `0.2.2-rc.1` is what was
-   actually exercised.
-4. Record a short demo: Plugins card → `/ponytail` loads → a smaller diff in one task. Keep it in
-   `assets/` and link it from the README.
-5. Release notes carry the evidence, not adjectives: version, tests, what was live-verified.
+   Its spam gate asks for a real install path, a non-template history and an honest
+   `verifiedAgainst`; all three are true here.
+3. Record a short demo: Plugins card → `/ponytail` loads → a smaller diff in one task.
+4. Release notes carry evidence, not adjectives.
 
 **90 days**
 
-- Remove `private` and publish to npm (`npm publish --access public`), then add the npm version and
-  download badges. Publishing makes `dsh plugin add @chonwai/dsh-ponytail` real; until then, the
-  README must keep saying "local checkout".
-- Write one technical post: "How I verified an agent-mode plugin instead of trusting the prompt",
-  using the A/B kit's real numbers and naming the small sample size.
-- Follow the registry and DSH release notes monthly; participate with issues, not drive-by comments.
+- Remove `private`, publish with `npm publish --access public`, add npm version and download badges.
+- Write one technical post about verifying an agent-mode plugin instead of trusting the prompt,
+  using the A/B kit's numbers and naming the small sample size.
+- Follow DSH releases and the registry monthly; participate through issues.
 
 **365 days**
 
-- Grow the family: `@chonwai/dsh-<capability>` bundles that share the same verification badge and the
-  same reversibility rules.
-- Keep a single "verified by" page (source of truth) rather than repeating claims in every README.
-- Never republish upstream benchmark numbers as yours; keep the `NOTICE` and the independent
-  integration line in every release.
+- Grow a family under the same scope and the same verification badge.
+- Keep one "verified by" page as the source of truth instead of repeating claims per README.
+- Never republish upstream benchmark numbers as ours; keep the independent-port line in releases.
 
-## Boundaries
+## Migration performed on 2026-11-09
 
-- MIT lets you redistribute the skills; it does not grant the upstream project's name or imply
-  endorsement. Keep "independent integration, not affiliated" visible.
-- Availability on npm/GitHub is not a trademark clearance; if this ever matters commercially, get
-  proper advice.
-- If a rename is ever forced (trademark, confusion), the costs are: GitHub repo rename keeps a
-  redirect; npm cannot rename, so publish the new name and deprecate the old one; a package-name
-  change means removing and reinstalling the bundle in the profile, because the Loader row names the
-  package. The six skills never rename.
+- `package.json` (name, version 2.0.0, description, keywords, repository/homepage/bugs),
+  `cordis.patch.yml` (row id `rein`), host half (`name`, `version`, `rein-rules`), locale titles,
+  tests, README/INSTALL/docs.
+- GitHub repository renamed to `Chonwai/dsh-rein` (old URL redirects); the local checkout moved to
+  `.../dsh-rein`.
+- Profile: the old bundle was removed and the new one installed and verified (six skills load, card
+  visible after a reload, pill registered).
+- Upgrading users: remove `@chonwai/dsh-ponytail`, then install this package (INSTALL.md §5).
+
+## Boundaries and fallbacks
+
+- MIT covers the code, not the upstream name or an endorsement: keep "independent, unofficial port"
+  visible in the README and NOTICE.
+- Availability is not a trademark search. If this ever becomes commercial, take proper advice.
+- If the name is contested, fall back to `dsh-farrier` (also free on 2026-11-09) or to a display-only
+  brand; the cost is one more migration and the six skills never change.

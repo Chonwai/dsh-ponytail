@@ -1,4 +1,4 @@
-# INSTALL — @chonwai/dsh-ponytail
+# INSTALL — @chonwai/dsh-rein
 
 DeepSeek Harness (DSH) bundle installation, migration from the file-level install, verification,
 rollback and troubleshooting. Written for DSH **0.2.2-rc.1** on macOS; the same flow applies to any
@@ -26,7 +26,7 @@ guards against double-registration.
 
 1. Open DSH → **Plugins** in the sidebar.
 2. **Add plugin** → **Install a third-party plugin**.
-3. Paste the **absolute path** to this directory, e.g. `/Users/you/code/dsh-ponytail`.
+3. Paste the **absolute path** to this directory, e.g. `/Users/you/code/dsh-rein`.
 4. Read the trust box and confirm. The Host reads the package (`pluginManager.inspect`), runs pnpm
    against the profile, then applies the bundle patch.
 5. If the dialog offers **Enable now**, accept it (the install normally enables a new bundle).
@@ -37,7 +37,7 @@ guards against double-registration.
 From a session with Full access (or an approval prompt you can answer):
 
 ```
-plugin_manager(action: "install_bundle", target: "/abs/path/to/dsh-ponytail")
+plugin_manager(action: "install_bundle", target: "/abs/path/to/dsh-rein")
 ```
 
 - The tool runs the same `installBundle` operation as the UI: `pnpm add link:<path>`, append to
@@ -54,7 +54,7 @@ separate approval per write.
 ## 3. CLI (CLI-managed profiles only)
 
 ```bash
-dsh plugin add /abs/path/to/dsh-ponytail
+dsh plugin add /abs/path/to/dsh-rein
 ```
 
 The Desktop app's `desktop` profile is managed exclusively by the app and rejects CLI plugin
@@ -74,7 +74,7 @@ live behavior, A/B benchmark) is in [`docs/VERIFICATION.md`](docs/VERIFICATION.m
    the `icon.svg` artwork come from `locale/*.json` when the running build surfaces localized bundle
    metadata; where it does not, the card falls back to the package name and description. Open its
    details: the long description is `meta.detail` (`README.md` / `README.zh-TW.md`) when the locale
-   resolves, otherwise the README. The bundle's plugin row **ponytail** is listed too.
+   resolves, otherwise the README. The bundle's plugin row **rein** is listed too.
 3. **New session catalog**: the available-skills catalog should list:
    `ponytail`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`, `ponytail-help`,
    `ponytail-review`. They are runtime skills (provider `runtime`).
@@ -86,7 +86,7 @@ live behavior, A/B benchmark) is in [`docs/VERIFICATION.md`](docs/VERIFICATION.m
    (id `ponytail`, order 2). It must not intercept typing or clicks. If it is missing, see §7.
 6. **Read-only inspection** (no approval in profiles with Full access): use the Cordis Config
    inspector for the package name to find the live row and its resolved config:
-   `cordis_inspect_query(platform: "host", provider: "Config", method: "listConfigs", input: { name: "@chonwai/dsh-ponytail" })`.
+   `cordis_inspect_query(platform: "host", provider: "Config", method: "listConfigs", input: { name: "@chonwai/dsh-rein" })`.
 
 Optional checks:
 
@@ -102,7 +102,7 @@ Observed on DSH 0.2.2-rc.1, `desktop` profile, 2026-11-08, macOS:
 | Check | Observed |
 |---|---|
 | `plugin_manager install_bundle` result | `application: "applied"`, `enabled: true`, `version: "1.0.0"`, no warnings |
-| profile state | dependency `link:<repo>`, bundle appended to `dsh.profile.bundles`, Loader row `include:ponytail` with the package directory resolved |
+| profile state | dependency `link:<repo>`, bundle appended to `dsh.profile.bundles`, Loader row `include:rein` with the package directory resolved |
 | session skill catalog | the six `ponytail*` names appear in the next catalog |
 | always-on rules | `rules.md` (scope note + upstream text) appears as one system-prompt section |
 | client dock | `conversation.composer.dock` has occupant `ponytail`, order 2, active |
@@ -173,8 +173,8 @@ v1 exports no `Config` schema, so there is no settings UI. To set `off`, overrid
 profile's `cordis.patch.yml` (or the equivalent patch layer) and restart:
 
 ```yaml
-- id: ponytail
-  name: '@chonwai/dsh-ponytail'
+- id: rein
+  name: '@chonwai/dsh-rein'
   config:
     defaultMode: 'off'
 ```

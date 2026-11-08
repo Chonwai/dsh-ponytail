@@ -1,4 +1,4 @@
-# Contributing to @chonwai/dsh-ponytail
+# Contributing to @chonwai/dsh-rein
 
 Thanks for helping. This package is intentionally small: a host half, a client
 half, six vendored skills and one rules document. Please keep it that way.

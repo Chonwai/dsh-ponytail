@@ -29,10 +29,10 @@ model, or anything on screen. CI runs this level on Node 22 and 24 for every pus
 
 | Check | How | Pass criterion |
 |---|---|---|
-| dependency | `dependencies["@chonwai/dsh-ponytail"]` in the profile `package.json` | `link:<path>` or the published version |
-| selection | `dsh.profile.bundles` in the same file | contains `@chonwai/dsh-ponytail` |
-| package link | `readlink <profile>/node_modules/@chonwai/dsh-ponytail` | resolves to the package directory |
-| Loader row | Cordis Config inspector: `listConfigs { name: "@chonwai/dsh-ponytail" }` | an entry with patch id `ponytail` and a `packageDir` |
+| dependency | `dependencies["@chonwai/dsh-rein"]` in the profile `package.json` | `link:<path>` or the published version |
+| selection | `dsh.profile.bundles` in the same file | contains `@chonwai/dsh-rein` |
+| package link | `readlink <profile>/node_modules/@chonwai/dsh-rein` | resolves to the package directory |
+| Loader row | Cordis Config inspector: `listConfigs { name: "@chonwai/dsh-rein" }` | an entry with patch id `rein` and a `packageDir` |
 | bundle listing | `plugin_manager` → `list_bundles` | `availability: "profile"`, `installed: true`, `enabled: true`, `removable: true`, expected version |
 | no duplicate source | `$DSH_HOME/skills` and `~/.agents/skills` | no `ponytail*` directories (unless you intend the file-level install) |
 
