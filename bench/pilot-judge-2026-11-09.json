@@ -1,0 +1,33 @@
+{
+  "pilot": "L3 pilot 2026-11-09",
+  "judge": "independent reviewer agent, blind to provenance; did not author any solution",
+  "packet": "arms anonymised as P/Q; mapping withheld from the judge: T2 P=A Q=B, T5 P=B Q=A",
+  "scores": {
+    "T2": {
+      "P": {
+        "correctness": 5,
+        "scope": 5,
+        "unrequested": "none"
+      },
+      "Q": {
+        "correctness": 5,
+        "scope": 5,
+        "unrequested": "none"
+      }
+    },
+    "T5": {
+      "P": {
+        "correctness": 5,
+        "scope": 5,
+        "unrequested": "none"
+      },
+      "Q": {
+        "correctness": 4,
+        "scope": 4,
+        "unrequested": "pretty-print indentation via JSON.stringify(..., null, 2) — unrequested output formatting"
+      }
+    }
+  },
+  "received": "2026-11-09T03:22+08:00",
+  "note": "T2 P and Q are byte-identical fixes. T5 differs only in JSON formatting; the judge scored the pretty-printed variant lower for an unrequested output change."
+}
