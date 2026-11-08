@@ -1,0 +1,90 @@
+name: Bug report
+description: Something in the bundle broke, or a step in INSTALL.md did not match what you saw.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. This bundle is small and has no runtime dependencies, so the
+        fastest reports name the exact row/step that failed. Please do not paste secrets.
+  - type: input
+    id: dsh-version
+    attributes:
+      label: DSH version
+      description: App version, or `dsh --version` for a CLI profile.
+      placeholder: "0.2.2-rc.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Profile
+      description: Desktop app profile, or a CLI-managed profile?
+      options:
+        - desktop (DeepSeek Harness app)
+        - CLI-managed profile
+        - other
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: What is broken
+      options:
+        - Install / enable / remove (Plugins page or plugin_manager)
+        - Skills do not appear in the catalog
+        - Skills appear but skill(...) or /name fails
+        - Always-on rules missing or too aggressive
+        - Composer pill missing or misbehaving
+        - Plugins page card / metadata
+        - Docs (README / INSTALL) do not match reality
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the exact install path you used (absolute path, spec or version).
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual
+      description: What you expected, and what happened instead. Paste the error text verbatim.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: |
+        Bundle version (Plugins page or package.json), whether a file-level install of the same
+        skills still exists under `$DSH_HOME/skills` or `~/.agents/skills`, relevant startup or
+        browser-console output, and for visual issues a screenshot.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I read the troubleshooting section of INSTALL.md.
+          required: true
+        - label: I am not pasting API keys, tokens or other secrets.
+          required: true
