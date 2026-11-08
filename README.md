@@ -156,6 +156,9 @@ Designed for DSH 0.2.2-rc.1. Verified:
   same 0.2.2-rc.1 desktop profile). Not screenshot-verified: the pill's pixels — its slot occupant
   is live, but the drawing itself was not captured. Details and troubleshooting in `INSTALL.md`.
 
+The four-level verification protocol, including the behavioral A/B benchmark and its decision rule,
+is in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
+
 ## Development
 
 ```bash

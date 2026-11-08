@@ -62,6 +62,9 @@ operations. Use §1 or §2 there. For a CLI-managed profile this is equivalent t
 
 ## 4. Restart and verify
 
+The short version is below; the full four-level protocol (package contract, installation reality,
+live behavior, A/B benchmark) is in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
+
 1. **Restart DSH** (quit and reopen, or reload the Web page if the build supports a live client
    reload). Rationale: installing a new bundle can apply through HMR, but a fresh client bundle and
    a fresh Host module generation are not guaranteed until restart/reload; the Plugins page reads

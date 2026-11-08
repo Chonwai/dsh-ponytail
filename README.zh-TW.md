@@ -142,6 +142,8 @@ host half 會偵測同名 skills 並跳過＋警告，不會靜默蓋掉檔案�
   profile 實測）。未做截圖驗證：膠囊像素——slot occupant 已 live，但沒有截到實際畫面。
   疑難排解見 `INSTALL.md`。
 
+四層驗證 protocol（含 behavioral A/B benchmark 與判定規則）見 [`docs/VERIFICATION.md`](docs/VERIFICATION.md)。
+
 ## 開發
 
 ```bash
