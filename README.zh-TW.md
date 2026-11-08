@@ -133,6 +133,8 @@ host half 會偵測同名 skills 並跳過＋警告，不會靜默蓋掉檔案�
   bundle 被列為 installed／enabled／removable；6 個 skills 出現在 session catalog；`rules.md`
   以一個 system-prompt section 注入；client 在 `conversation.composer.dock` 註冊 `ponytail`
   occupant（order 2）。
+- Skill 載入：1.0.1 修好後，`skill("ponytail")`、`skill("ponytail-help")`、`skill("ponytail-review")`
+  都回傳完整內容（provider `runtime`）；另外三個走同一條註冊路徑。
 - Plugins 頁：重新整理後，desktop Web UI 已可看到 Ponytail 卡（同一個 0.2.2-rc.1 desktop
   profile 實測）。未做截圖驗證：膠囊像素——slot occupant 已 live，但沒有截到實際畫面。
   疑難排解見 `INSTALL.md`。

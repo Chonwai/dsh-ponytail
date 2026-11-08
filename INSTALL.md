@@ -105,6 +105,9 @@ Observed on DSH 0.2.2-rc.1, `desktop` profile, 2026-11-08, macOS:
 | client dock | `conversation.composer.dock` has occupant `ponytail`, order 2, active |
 | Plugins listing | `pluginManager.listBundles()` returns the bundle as installed, enabled, removable |
 | Plugins page visual | after a reload the Ponytail card is visible in the desktop Web UI (2026-11-08) |
+| skill load (1.0.0) | `skill("ponytail")` threw `loaded skill "ponytail" source must be a string`; fixed in 1.0.1 |
+| skill load (1.0.1, after bundle off/on) | `skill("ponytail")`, `skill("ponytail-help")`, `skill("ponytail-review")` return `<skill_content>` (provider `runtime`); the other three register through the same code path |
+| module reload | toggling the bundle off/on unloads and remounts the host plugin, so a changed linked module is picked up without an app restart |
 
 ## 5. Migrating from the file-level install
 
@@ -155,6 +158,7 @@ Removing the bundle does not reinstall file-level skills. Pick one strategy.
 | Bundle enabled but the row is **inactive/failed** | a host-side exception or a missing optional service. Missing `skills`/`systemPrompt` alone only warns, but a module import error fails the row | read the startup warnings; if you changed code, reinstall; a replaced package needs a restart for a fresh module generation |
 | No `ponytail*` in a new session's catalog, but Plugins shows the bundle | the six names were already provided when the plugin mounted (file-level install still present), so registration was skipped | remove the file-level skills, then toggle the row off/on (§5) |
 | Catalog has duplicates of `ponytail*` (two providers) | file-level and runtime copies both present | remove the file-level install; runtime wins but the catalog is confusing |
+| `skill(...)` fails with `source must be a string` after you updated files | the Host still runs the module generation imported earlier | toggle the bundle off/on in **Plugins** (or restart DSH), then verify §4 |
 | No pill in the composer dock | the client module did not load, or the Web client was not reloaded/rebuilt after install | confirm `dsh.client` in the installed package, restart/reload DSH, and check the browser console for module-load errors |
 | Pill overlaps the composer or captures clicks | it must be `pointer-events: none` and live inside the slot's flow | report with a screenshot; do not patch host DOM |
 | Rules not applied | `defaultMode` is `off`, or the `systemPrompt` service is absent in this composition (warning in logs) | remove the `off` override / use a preset that mounts `systemPrompt` |
