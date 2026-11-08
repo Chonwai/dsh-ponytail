@@ -1,7 +1,7 @@
 # Naming and branding
 
-Decision recorded 2026-11-09, revised the same day after the naming study in
-`ponytail-research/branding/NAMING.md` (maintainer workspace). Availability checks used `npm view`,
+Decision recorded 2026-11-09, revised the same day after a naming study kept in the maintainer's
+notes. Availability checks used `npm view`,
 the npm registry HTTP API and `gh search repos`; they describe what was visible on that date, not
 trademark clearance.
 

@@ -15,11 +15,11 @@ managed profile.
 | What this package writes at runtime | nothing outside its own package; it only reads `skills/*/SKILL.md` and `rules.md` |
 | Approval needed | every `plugin_manager` action (including listing) needs **Full access** or an approval prompt; the Web UI install dialog has its own trust confirmation |
 | Network | none for a local-directory install; no dependencies to download |
-| Restart | a new bundle *can* activate through HMR, but a fresh JavaScript module generation and the client bundle are not guaranteed until a reload/restart — see §3 |
-| Backout | toggle the bundle off, or remove it (§6) |
+| Restart | a new bundle *can* activate through HMR, but a fresh JavaScript module generation and the client bundle are not guaranteed until a reload/restart — see §4 |
+| Backout | toggle the bundle off, or remove it (§7) |
 
 Recommended: confirm the six skills are **not** also present as files before enabling this bundle
-(§5). Two sources with the same skill names make the catalog confusing even though the host half
+(§6). Two sources with the same skill names make the catalog confusing even though the host half
 guards against double-registration.
 
 ## 1. Install from the Web UI (recommended for a local checkout)
@@ -83,7 +83,7 @@ live behavior, A/B benchmark) is in [`docs/VERIFICATION.md`](docs/VERIFICATION.m
    provides no read-only "show me the prompt section" tool in every profile — a reliable check is
    to compare behavior with the row off vs on.
 5. **Composer pill**: the composer dock should show a small non-interactive `● Ponytail` pill
-   (id `ponytail`, order 2). It must not intercept typing or clicks. If it is missing, see §7.
+   (id `ponytail`, order 2). It must not intercept typing or clicks. If it is missing, see §8.
 6. **Read-only inspection** (no approval in profiles with Full access): use the Cordis Config
    inspector for the package name to find the live row and its resolved config:
    `cordis_inspect_query(platform: "host", provider: "Config", method: "listConfigs", input: { name: "@chonwai/dsh-rein" })`.
@@ -92,7 +92,7 @@ Optional checks:
 
 - Toggle the bundle/row **off**, start a new session: the six skills and the rules should disappear
   (the host half releases its registrations on dispose). Toggle **on** to restore.
-- Override the row config to `defaultMode: "off"` (see §7) and restart: the rules section is
+- Override the row config to `defaultMode: "off"` (see §8) and restart: the rules section is
   suppressed, the skills stay registered.
 
 ### Live verification record (this repo's first install)
@@ -111,8 +111,24 @@ Observed on DSH 0.2.2-rc.1, `desktop` profile, 2026-11-08, macOS:
 | skill load (1.0.0) | `skill("ponytail")` threw `loaded skill "ponytail" source must be a string`; fixed in 1.0.1 |
 | skill load (1.0.1, after bundle off/on) | all six `skill("…")` calls return `<skill_content>` (provider `runtime`); an independent verifier loaded each and matched two bodies against the vendored files |
 | module reload | toggling the bundle off/on unloads and remounts the host plugin, so a changed linked module is picked up without an app restart |
+| install (2.0.0 rename) | remove of `@chonwai/dsh-ponytail`, then install of `@chonwai/dsh-rein` → `application: "applied"`, `version: "2.0.0"` |
+| row and slot after rename | Loader row `include:rein`; `skill("ponytail")` returns `<skill_content>`; composer occupant `ponytail` (order 2) still active |
 
-## 5. Migrating from the file-level install
+## 5. Upgrading from 1.x (`@chonwai/dsh-ponytail`)
+
+Version 2.0.0 renamed the package to `@chonwai/dsh-rein`; the skills, gestures and pill text did not
+change. A `link:` install cannot be renamed in place, so:
+
+1. Plugins page → remove the `@chonwai/dsh-ponytail` bundle (or
+   `plugin_manager(action: "remove_bundle", target: "@chonwai/dsh-ponytail")`).
+2. Install this package from the renamed checkout path, as in §1 or §2.
+3. Confirm the profile depends on `@chonwai/dsh-rein`, the row is `rein`, and the checks in §4 pass.
+4. A `node_modules/@chonwai/dsh-ponytail` symlink left behind is dangling: `pnpm install` in the
+   profile or a DSH restart prunes it, or delete it by hand.
+
+The previous release `v1.0.1` stays available for anyone who still needs the old package name.
+
+## 6. Migrating from the file-level install
 
 The file-level route copies the same six skill names into `$DSH_HOME/skills` (skill rank 400) or
 `~/.agents/skills` (rank 500), and optionally adds a block into a repository's `AGENTS.md`.
@@ -139,27 +155,27 @@ Checklist, in order:
       names. Toggle the bundle (or the `ponytail` row) **off → on**, or restart DSH, so registration
       runs again against the clean catalog.
 - [ ] 5. Verify with §4.
-- [ ] 6. To go back: remove the bundle (§6), then copy the six `SKILL.md` files back into
+- [ ] 6. To go back: remove the bundle (§7), then copy the six `SKILL.md` files back into
       `$DSH_HOME/skills` from the upstream release.
 
-## 6. Rollback
+## 7. Rollback
 
 | Intent | Action | Notes |
 |---|---|---|
 | Pause without uninstalling | Plugins → switch the bundle off (or `plugin_manager set_bundle enabled:false`) | keeps the package installed; the bundle layer stops applying |
 | Remove completely | Plugins → Remove (or `plugin_manager remove_bundle`) | removes the dependency and layer; restart if asked |
 | Return to file-level install | remove the bundle, then run the file-level installer | file-level route is unaffected by this package |
-| Undo only the rules | no config UI in v1; set `defaultMode: "off"` in the row override (§7) or remove the bundle | skills stay registered when `off` |
+| Undo only the rules | no config UI in v1; set `defaultMode: "off"` in the row override (§8) or remove the bundle | skills stay registered when `off` |
 
 Removing the bundle does not reinstall file-level skills. Pick one strategy.
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | Plugins page shows the bundle with an **error** | package not readable, bundle patch invalid, or an engine mismatch | check the startup diagnostics; confirm `node --check lib/*.js` and that `engines.dsh` accepts your DSH version; reinstall |
 | Bundle enabled but the row is **inactive/failed** | a host-side exception or a missing optional service. Missing `skills`/`systemPrompt` alone only warns, but a module import error fails the row | read the startup warnings; if you changed code, reinstall; a replaced package needs a restart for a fresh module generation |
-| No `ponytail*` in a new session's catalog, but Plugins shows the bundle | the six names were already provided when the plugin mounted (file-level install still present), so registration was skipped | remove the file-level skills, then toggle the row off/on (§5) |
+| No `ponytail*` in a new session's catalog, but Plugins shows the bundle | the six names were already provided when the plugin mounted (file-level install still present), so registration was skipped | remove the file-level skills, then toggle the row off/on (§6) |
 | Catalog has duplicates of `ponytail*` (two providers) | file-level and runtime copies both present | remove the file-level install; runtime wins but the catalog is confusing |
 | `skill(...)` fails with `source must be a string` after you updated files | the Host still runs the module generation imported earlier | toggle the bundle off/on in **Plugins** (or restart DSH), then verify §4 |
 | No pill in the composer dock | the client module did not load, or the Web client was not reloaded/rebuilt after install | confirm `dsh.client` in the installed package, restart/reload DSH, and check the browser console for module-load errors |
@@ -181,7 +197,7 @@ profile's `cordis.patch.yml` (or the equivalent patch layer) and restart:
 
 The host half reads `config.defaultMode` defensively; `off` only suppresses the rules section.
 
-## 8. Filing an issue
+## 9. Filing an issue
 
 Include: DSH version (`DSH` app version / `dsh --version`), profile name, the plugin row's activation
 state, relevant startup diagnostics and browser console output, whether the file-level install was

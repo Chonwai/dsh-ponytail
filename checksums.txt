@@ -1,4 +1,4 @@
-# sha256 pins for the vendored files of @chonwai/dsh-rein 1.0.0
+# sha256 pins for the vendored files of @chonwai/dsh-rein 2.0.0
 # Upstream: Ponytail v5.3.3 (tag v5.3.3, released 2026-10-29) https://github.com/DietrichGebert/ponytail (MIT)
 # Regenerate: { head -3 checksums.txt; shasum -a 256 skills/*/SKILL.md rules.md; } > checksums.tmp && mv checksums.tmp checksums.txt
 2b3223a02c386d1263e1b08343cb8eb3a53e444cdafb1d79e26c8ec2a8fcad28  skills/ponytail-audit/SKILL.md
