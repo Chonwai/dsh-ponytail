@@ -104,7 +104,7 @@ Observed on DSH 0.2.2-rc.1, `desktop` profile, 2026-11-08, macOS:
 | always-on rules | `rules.md` (scope note + upstream text) appears as one system-prompt section |
 | client dock | `conversation.composer.dock` has occupant `ponytail`, order 2, active |
 | Plugins listing | `pluginManager.listBundles()` returns the bundle as installed, enabled, removable |
-| Plugins page visual | the page reads that listing at load, so it needs a reload after install; the card itself was not screenshot-verified in this round |
+| Plugins page visual | after a reload the Ponytail card is visible in the desktop Web UI (2026-11-08) |
 
 ## 5. Migrating from the file-level install
 
