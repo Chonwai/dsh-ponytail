@@ -1,5 +1,5 @@
 /**
- * Offline host-half smoke test for @chonwai/dsh-ponytail.
+ * Offline host-half smoke test for @chonwai/dsh-rein.
  *
  * Imports the host module directly and mounts it against fake Cordis contexts.
  * Nothing here touches a DSH profile, the Loader, the network, or `$HOME`; this
@@ -124,7 +124,7 @@ await check('mount registers six skills and one rules section', async () => {
   }
   assert.equal(prompt.sections.length, 1, 'expected exactly one prompt section');
   const section = prompt.sections[0];
-  assert.equal(section.name, 'ponytail-rules');
+  assert.equal(section.name, 'rein-rules');
   assert.equal(section.order, 700);
   const text = section.text();
   assert.ok(text.includes('smallest complete change'), 'rules text must include the vendored ruleset');
@@ -229,8 +229,8 @@ await check('frontmatter parser handles all six vendored files', () => {
 // 8. Module surface: plugin constants and a deliberately absent Config export.
 await check('module surface matches the v1 contract (no Config export)', async () => {
   const module = await import('../lib/index.js');
-  assert.equal(pluginName, 'ponytail');
-  assert.equal(pluginVersion, '1.0.1');
+  assert.equal(pluginName, 'rein');
+  assert.equal(pluginVersion, '2.0.0');
   assert.deepEqual(LEVELS, ['lite', 'full', 'ultra', 'review', 'off']);
   assert.equal(typeof apply, 'function');
   assert.ok(!('Config' in module), 'v1 must not export a Config schema');

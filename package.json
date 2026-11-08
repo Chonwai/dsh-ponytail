@@ -1,19 +1,20 @@
 {
-  "name": "@chonwai/dsh-ponytail",
-  "version": "1.0.1",
+  "name": "@chonwai/dsh-rein",
+  "version": "2.0.0",
   "private": true,
-  "description": "Ponytail for DeepSeek Harness: six skills, a scoped always-on ruleset, and a composer-dock pill. Verified, reversible, MIT, no runtime dependencies.",
+  "description": "Rein — Ponytail for DeepSeek Harness: six skills, a scoped always-on ruleset, and a composer-dock pill. Verified, reversible, MIT, no runtime dependencies.",
   "license": "MIT",
   "author": "Chonwai",
-  "homepage": "https://github.com/Chonwai/dsh-ponytail#readme",
+  "homepage": "https://github.com/Chonwai/dsh-rein#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Chonwai/dsh-ponytail.git"
+    "url": "git+https://github.com/Chonwai/dsh-rein.git"
   },
   "bugs": {
-    "url": "https://github.com/Chonwai/dsh-ponytail/issues"
+    "url": "https://github.com/Chonwai/dsh-rein/issues"
   },
   "keywords": [
+    "rein",
     "deepseek-harness",
     "dsh",
     "dsh-bundle",

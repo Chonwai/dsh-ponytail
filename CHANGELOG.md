@@ -4,6 +4,25 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project uses
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-11-09
+
+### Changed (breaking)
+
+- **Renamed the project to Rein.** The npm package is now `@chonwai/dsh-rein` and the repository
+  `Chonwai/dsh-rein`; the bundle row id is `rein` and the prompt section `rein-rules`. The reason is
+  recorded in `docs/BRANDING.md`: 19 exact-name repositories and two npm packages already use the
+  `dsh-ponytail` / `ponytail-dsh` names, so the old slug could not become an identity.
+- The six skills, the `/ponytail*` user gestures, the pill text and the upstream attribution are
+  unchanged: this is a distribution, and the mode keeps its name.
+- Upgrading: remove the old `@chonwai/dsh-ponytail` bundle, then install this package (INSTALL.md §5).
+  A linked local install cannot be renamed in place.
+
+### Added
+
+- `docs/VERIFICATION.md` (four-level verification protocol; L3 A/B with a pre-registered rule) and
+  `bench/` (six tasks, score sheet, fairness rules).
+- `docs/BRANDING.md` (naming decision, personal-branding plan, registry entry, fallbacks).
+
 ## [1.0.1] - 2026-11-08
 
 ### Fixed

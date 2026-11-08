@@ -1,6 +1,10 @@
-@chonwai/dsh-ponytail
+@chonwai/dsh-rein
 Copyright (c) 2026 Chonwai
 Licensed under the MIT License (see LICENSE).
+
+Rein is an independent, unofficial port of Ponytail for DeepSeek Harness.
+The Ponytail name and project belong to DietrichGebert; this package redistributes
+MIT-licensed skills and derived rules text with attribution below.
 
 Third-party attribution
 -----------------------

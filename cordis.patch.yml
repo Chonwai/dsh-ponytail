@@ -1,4 +1,4 @@
-# Bundle patch for @chonwai/dsh-ponytail.
+# Bundle patch for @chonwai/dsh-rein.
 #
 # This file is applied once when the profile lists the bundle in
 # `dsh.profile.bundles`. It inserts the single plugin row that mounts the host
@@ -11,7 +11,7 @@
 # the level, override this row by id from the profile patch instead; the
 # override replaces the whole `config`.
 - insert:
-    - id: ponytail
-      name: '@chonwai/dsh-ponytail'
+    - id: rein
+      name: '@chonwai/dsh-rein'
       config:
         defaultMode: full

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Static, offline checks for @chonwai/dsh-ponytail.
+# Static, offline checks for @chonwai/dsh-rein.
 #
 # Verifies the package without touching a DSH profile, the Loader, pnpm, the
 # network or $HOME: manifest/YAML/JSON structure, JavaScript syntax, the client
@@ -41,7 +41,7 @@ sha256_check() { # <checksums file>
     shasum -a 256 -c "$1" >/dev/null 2>&1
   else
     local filtered
-    filtered=$(mktemp "${TMPDIR:-/tmp}/dsh-ponytail-checksums.XXXXXX")
+    filtered=$(mktemp "${TMPDIR:-/tmp}/dsh-rein-checksums.XXXXXX")
     grep -v '^#' "$1" > "$filtered"
     sha256sum -c "$filtered" >/dev/null 2>&1
     local status=$?
@@ -52,7 +52,7 @@ sha256_check() { # <checksums file>
 
 cd "$PACKAGE_DIR" || { echo "cannot cd to package dir"; exit 2; }
 hr
-printf 'offline check: @chonwai/dsh-ponytail\n'
+printf 'offline check: @chonwai/dsh-rein\n'
 printf 'package: %s\n' "$PACKAGE_DIR"
 hr
 
@@ -89,8 +89,8 @@ fi
 for field in name version description license author homepage repository.url bugs.url type main exports icon files dsh.bundle.patch dsh.client.platform dsh.client.immediately dsh.client.inject engines.node engines.dsh; do
   if [ "$(manifest "$field")" = "yes" ]; then ok "package.json has $field"; else bad "package.json is missing $field"; fi
 done
-[ "$(manifest_value name)" = "@chonwai/dsh-ponytail" ] && ok "package name is @chonwai/dsh-ponytail" || bad "package name is wrong"
-[ "$(manifest_value version)" = "1.0.1" ] && ok "package version is 1.0.1" || bad "package version is not 1.0.1"
+[ "$(manifest_value name)" = "@chonwai/dsh-rein" ] && ok "package name is @chonwai/dsh-rein" || bad "package name is wrong"
+[ "$(manifest_value version)" = "2.0.0" ] && ok "package version is 2.0.0" || bad "package version is not 2.0.0"
 lib_version=$(grep -oE "export const version = '[^']+'" "$PACKAGE_DIR/lib/index.js" | sed -E "s/.*'([^']+)'/\1/")
 [ "$lib_version" = "$(manifest_value version)" ] && ok "lib/index.js version matches package.json" || bad "lib/index.js version (${lib_version:-missing}) does not match package.json"
 [ "$(manifest_value license)" = "MIT" ] && ok "package license is MIT" || bad "package license is not MIT"
@@ -121,15 +121,15 @@ assert isinstance(data, list) and len(data) == 1, 'one top-level patch expected'
 rows = data[0].get('insert')
 assert isinstance(rows, list) and len(rows) == 1, 'exactly one inserted row expected'
 row = rows[0]
-assert row.get('id') == 'ponytail', 'row id must be ponytail'
-assert row.get('name') == '@chonwai/dsh-ponytail', 'row name must be the package'
+assert row.get('id') == 'rein', 'row id must be rein'
+assert row.get('name') == '@chonwai/dsh-rein', 'row name must be the package'
 assert isinstance(row.get('config', {}).get('defaultMode'), str), 'config.defaultMode must be a string'
 assert 'config' in row and row['config'], 'the row carries its default config'
 PY
 then
-  ok "cordis.patch.yml parses with one ponytail insert row"
+  ok "cordis.patch.yml parses with one rein insert row"
 else
-  bad "cordis.patch.yml is invalid (must be one insert row for @chonwai/dsh-ponytail)"
+  bad "cordis.patch.yml is invalid (must be one insert row for @chonwai/dsh-rein)"
 fi
 inject_value=$(node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8"));process.stdout.write(JSON.stringify(p.dsh.client.inject))' "$PACKAGE_DIR/package.json")
 if [ "$inject_value" = '["@deepseek-ai/dsh-client-ui-conversation"]' ]; then
@@ -181,7 +181,7 @@ check_client() { # <description> <grep pattern>
   if grep -qF -- "$2" lib/client.js; then ok "client.js $1"; else bad "client.js is missing $1"; client_checks_ok=0; fi
 }
 check_client "registers through window.__ModuleLoader__" '__ModuleLoader__.load'
-check_client "declares the package-name factory id" "id: '@chonwai/dsh-ponytail'"
+check_client "declares the package-name factory id" "id: '@chonwai/dsh-rein'"
 check_client "requires React from the browser module table" "require('react')"
 check_client "injects the composer dock slot" 'conversation.composer.dock'
 check_client "uses slot id ponytail" "id: 'ponytail'"
@@ -255,15 +255,15 @@ else
 fi
 
 # 8. Offline host and client smoke tests.
-if node tests/host-smoke.mjs > /tmp/dsh-ponytail-host-smoke.log 2>&1; then
-  ok "host-smoke.mjs passes ($(grep -c '^PASS' /tmp/dsh-ponytail-host-smoke.log) checks)"
+if node tests/host-smoke.mjs > /tmp/dsh-rein-host-smoke.log 2>&1; then
+  ok "host-smoke.mjs passes ($(grep -c '^PASS' /tmp/dsh-rein-host-smoke.log) checks)"
 else
-  bad "host-smoke.mjs failed; see /tmp/dsh-ponytail-host-smoke.log"
+  bad "host-smoke.mjs failed; see /tmp/dsh-rein-host-smoke.log"
 fi
-if node tests/client-smoke.mjs > /tmp/dsh-ponytail-client-smoke.log 2>&1; then
-  ok "client-smoke.mjs passes ($(grep -c '^PASS' /tmp/dsh-ponytail-client-smoke.log) checks)"
+if node tests/client-smoke.mjs > /tmp/dsh-rein-client-smoke.log 2>&1; then
+  ok "client-smoke.mjs passes ($(grep -c '^PASS' /tmp/dsh-rein-client-smoke.log) checks)"
 else
-  bad "client-smoke.mjs failed; see /tmp/dsh-ponytail-client-smoke.log"
+  bad "client-smoke.mjs failed; see /tmp/dsh-rein-client-smoke.log"
 fi
 
 hr

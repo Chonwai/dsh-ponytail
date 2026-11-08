@@ -1,5 +1,5 @@
 /**
- * Offline client-half smoke test for @chonwai/dsh-ponytail.
+ * Offline client-half smoke test for @chonwai/dsh-rein.
  *
  * The browser artifact is a classic script that registers a lazy factory on
  * `window.__ModuleLoader__`. This test fakes that global and a minimal `require`
@@ -79,7 +79,7 @@ function collectStyles(node, found = []) {
 
 await check('client artifact registers exactly one module on window.__ModuleLoader__', () => {
   assert.equal(captured.length, 1, `expected one registration, got ${captured.length}`);
-  assert.equal(captured[0].id, '@chonwai/dsh-ponytail', 'factory id must equal the package name');
+  assert.equal(captured[0].id, '@chonwai/dsh-rein', 'factory id must equal the package name');
   assert.equal(typeof captured[0].factory, 'function');
 });
 
