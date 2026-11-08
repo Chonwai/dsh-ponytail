@@ -18,7 +18,8 @@ yet.
 1. Remove `"private": true` from `package.json` in its own commit
    (`chore: make the package publishable`). Nothing else changes.
 2. `npm login` with the account that owns the `@chonwai` scope, then
-   `npm publish --access public`.
+   `npm publish --access public`. Use `--provenance` when publishing from CI so the tarball is tied
+   to this repository and commit.
 3. Verify from outside the repository:
    - `npm view @chonwai/dsh-rein version` returns the version you published;
    - in a throwaway directory, `npm pack @chonwai/dsh-rein` and run the consumer checks against the
@@ -27,6 +28,14 @@ yet.
      canary profile and repeat L2 (six skills load, row active, pill registered).
 4. Only after the npm install works, update `INSTALL.md` to show the npm spec first and the local
    checkout second, and add the npm badges to the README.
+
+### If the publish is wrong
+
+npm cannot rename a package. Prefer `npm deprecate @chonwai/dsh-rein@<bad> "<reason>; use <good>"`
+and publish a patch; `npm unpublish` only inside npm's policy window (72 hours) and only for a
+security or data-loss reason, because it breaks every consumer who already installed the version.
+The tagged source is not invalidated by a bad publish: fix on `main`, cut a patch, and say what
+happened in the release notes.
 
 Optional, at publish time: create a deprecated alias package `@chonwai/dsh-ponytail` whose README says
 "renamed to @chonwai/dsh-rein" and whose install instructions point at Rein, then `npm deprecate` it

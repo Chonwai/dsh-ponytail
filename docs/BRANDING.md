@@ -96,8 +96,8 @@ levers are the ones under our control: npm keywords, registry listings, and inbo
 
 Track monthly: (1) GitHub rank for `ponytail dsh`, (2) npm search position for `ponytail deepseek
 harness` after the first publish, (3) registry listing, (4) inbound links. Tracking lives in the
-monthly BRANDING review; the concrete revisit date is **2027-02-09** (three months after the first
-npm publish and the first registry listing, whichever lands later), earlier if either event slips. At
+monthly BRANDING review; the review happens **three months after the later of the first npm publish
+and the first registry listing**, and never earlier than **2027-02-09**. At
 that point, if the default query still leaves us outside the top 20 and npm search does not show the
 package on page one, revisit option B/C or D with data instead of guessing. Until the first npm
 publish, another rename still costs only a reinstall.
