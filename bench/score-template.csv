@@ -1,0 +1,13 @@
+task_id,arm,run_id,started_at,model,reasoning,files_changed,loc_added,loc_removed,tests_added,tests_passed,unrequested_abstractions,judge_correctness_1_5,judge_scope_1_5,wall_minutes,tokens_in,tokens_out,review_found,review_false_mustfix,notes
+T1,A,,,,,,,,,,,,,,,,,,
+T1,B,,,,,,,,,,,,,,,,,,
+T2,A,,,,,,,,,,,,,,,,,,
+T2,B,,,,,,,,,,,,,,,,,,
+T3,A,,,,,,,,,,,,,,,,,,
+T3,B,,,,,,,,,,,,,,,,,,
+T4,A,,,,,,,,,,,,,,,,,,
+T4,B,,,,,,,,,,,,,,,,,,
+T5,A,,,,,,,,,,,,,,,,,,
+T5,B,,,,,,,,,,,,,,,,,,
+T6,A,,,,,,,,,,,,,,,,,,
+T6,B,,,,,,,,,,,,,,,,,,
