@@ -4,6 +4,8 @@
 DeepSeek Harness bundle：6 個上游 Ponytail skills、一份有 scope 的 always-on 規則，加上輸入框 dock
 裡一顆小小的「Ponytail」狀態膠囊；可在 Plugins 頁安裝與移除。MIT、無 runtime dependencies。
 舊名 `@chonwai/dsh-ponytail`；改名原因見 [`docs/BRANDING.md`](docs/BRANDING.md)。
+如果你在找 DeepSeek Harness 的 Ponytail port、或舊名 `dsh-ponytail`，就是這個專案：顯示名保留上游
+名字，套件 slug 沒有。
 
 獨立社群整合：與上游 Ponytail 專案及 DeepSeek 均無隸屬或背書關係。
 

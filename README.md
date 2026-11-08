@@ -4,7 +4,9 @@
 bundle: six upstream Ponytail skills, one scoped always-on ruleset, and a small "Ponytail" pill in
 the composer dock. Installable from the Plugins page, removable from the same place; MIT, no runtime
 dependencies. Formerly `@chonwai/dsh-ponytail` — see [`docs/BRANDING.md`](docs/BRANDING.md) for why
-the name changed.
+the name changed. If you searched for a Ponytail port for DeepSeek Harness, or for the old
+`dsh-ponytail` name, this is that project: the display name keeps the upstream name, the package
+slug does not.
 
 An independent community integration: not affiliated with or endorsed by the upstream Ponytail
 project or by DeepSeek.
