@@ -40,6 +40,59 @@ the old name with a display brand 81.0, **Farrier 80.0**. The gap between the fi
 deciding factor was ownability, because a 19-way collision cannot be undone later while a display
 brand can always be added later.
 
+## Keeping the Ponytail name visible (the slug stays Rein)
+
+GitHub's repository search reads **name, description and topics by default**; the README only counts
+with `in:readme` ([GitHub docs, searched 2026-11-09](https://docs.github.com/en/search-github/searching-on-github/searching-for-repositories)).
+npm search reads name, description and keywords. So the question is not "is Ponytail in the slug"
+but "does every searchable field still carry it".
+
+Measured on 2026-11-09, the day after the rename (repository is new, 0 stars):
+
+| Query | Matches | Our position |
+|---|---:|---|
+| `ponytail dsh` (default fields) | 42 | **41st** |
+| `ponytail dsh in:description` | 17 | 15th |
+| `topic:dsh topic:ponytail` | 13 | 13th |
+| `rein ponytail` | 1 | **1st** |
+| `"Ponytail for DeepSeek Harness"` | 1 | **1st** |
+| `ponytail dsh in:name` | 32 | absent (no Ponytail in the slug) |
+
+The honest reading: we are *matchable* through description and topics, but ranked last because the
+repository has no stars, no inbound links and no age. Adding `ponytail` to the slug would put us in
+the 32-entry `in:name` set, where the same popularity ranking applies; it would not buy the top spot,
+and it would make the package read as a variant of `dsh-ponytail` rather than as Rein. The bigger
+levers are the ones under our control: npm keywords, registry listings, and inbound links.
+
+### Options considered
+
+| Option | Search benefit | Cost / risk | Verdict |
+|---|---|---|---|
+| **A. Keep `dsh-rein`; put Ponytail in description, topics, keywords, display** | matches description/topic queries; npm keywords carry the old name | needs listing work; name-only queries still miss | **chosen** |
+| B. Rename to `dsh-rein-ponytail` | enters the name-match set | redundant, longest slug, brand diluted, third identity in two days; rank gain unproven | rejected |
+| C. Rename to `dsh-ponytail-rein` | enters the name-match set and the old-name set | reads as another `dsh-ponytail` fork; brand demoted to a suffix; same ranking problem | rejected |
+| D. Alias repository `Chonwai/dsh-ponytail` pointing here | captures old-name searches directly | second repo to maintain; registry spam gates dislike empty duplicates; the old URL already redirects | deferred, revisit only with data |
+| E. Deprecated npm alias `@chonwai/dsh-ponytail` at publish time | captures old-name npm searches | one more package; standard deprecation pattern | deferred until the first publish |
+
+### What every surface must carry
+
+- Display name: **Rein — Ponytail for DeepSeek Harness**.
+- README first screen: says "Ponytail port for DeepSeek Harness", the old name, and links here.
+- GitHub description: contains "Ponytail for DeepSeek Harness" and "Formerly dsh-ponytail".
+- GitHub topics: `ponytail`, `dsh`, `deepseek-harness`, `dsh-bundle`.
+- `package.json`: description mentions Ponytail; keywords include `ponytail` and `dsh-ponytail`.
+  `tests/offline-check.sh` asserts all three, so a tidy-up cannot remove them silently.
+- locale title, release notes, CHANGELOG, registry entry: display name, not the slug.
+- Upstream attribution stays: this is a distribution, not the upstream project.
+
+### Revisit rule
+
+Track monthly: (1) GitHub rank for `ponytail dsh`, (2) npm search position for `ponytail deepseek
+harness` after the first publish, (3) registry listing, (4) inbound links. If, three months after
+publishing and listing, the default query still leaves us outside the top 20 and npm search does not
+show the package on page one, revisit option B/C or D with data instead of guessing. Until the first
+npm publish, another rename still costs only a reinstall.
+
 ## The naming rule for this maintainer
 
 - npm packages: `@chonwai/dsh-<product>`; repositories `Chonwai/dsh-<product>`.
