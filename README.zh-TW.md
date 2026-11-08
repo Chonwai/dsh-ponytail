@@ -1,10 +1,14 @@
-# @chonwai/dsh-ponytail
+# Ponytail for DeepSeek Harness
 
 [![CI](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml/badge.svg)](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/Chonwai/dsh-ponytail)](https://github.com/Chonwai/dsh-ponytail/releases)
 
-**把 Ponytail 做成 DeepSeek Harness bundle。** 6 個 skills、一份有 scope 的 always-on 規則，
-加上輸入框 dock 裡一顆小小的「Ponytail」狀態膠囊；可以直接在 Plugins 頁安裝，也可以從同一頁移除。
+`@chonwai/dsh-ponytail` — 由 **Chonwai** 維護的 DeepSeek Harness bundle：6 個 skills、一份有 scope 的
+always-on 規則，加上輸入框 dock 裡一顆小小的「Ponytail」狀態膠囊；可在 Plugins 頁安裝與移除。
+MIT、無 runtime dependencies。
+
+獨立社群整合：與上游 Ponytail 專案及 DeepSeek 均無隸屬或背書關係。
 
 Ponytail（上游：[DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)）是一套
 「懶人資深工程師」指令集：用最小的改動完整解決問題、不做沒人要求的東西，但绝不省略驗證、

@@ -1,11 +1,15 @@
-# @chonwai/dsh-ponytail
+# Ponytail for DeepSeek Harness
 
 [![CI](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml/badge.svg)](https://github.com/Chonwai/dsh-ponytail/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/Chonwai/dsh-ponytail)](https://github.com/Chonwai/dsh-ponytail/releases)
 
-**Ponytail as a DeepSeek Harness bundle.** Six skills, one scoped always-on ruleset, and a small
-"Ponytail" pill in the composer dock — installable from the Plugins page, removable from the same
-place.
+`@chonwai/dsh-ponytail` — a verified, reversible DeepSeek Harness bundle by **Chonwai**. Six skills,
+one scoped always-on ruleset, and a small "Ponytail" pill in the composer dock; installable from the
+Plugins page, removable from the same place. MIT, no runtime dependencies.
+
+An independent community integration: not affiliated with or endorsed by the upstream Ponytail
+project or by DeepSeek.
 
 Ponytail (upstream: [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)) is a
 "lazy senior dev" instruction set: solve the whole problem with the smallest change, do not build

@@ -2,7 +2,7 @@
   "name": "@chonwai/dsh-ponytail",
   "version": "1.0.1",
   "private": true,
-  "description": "Ponytail as a DeepSeek Harness bundle: six skills, a scoped always-on ruleset, and a composer-dock pill.",
+  "description": "Ponytail for DeepSeek Harness: six skills, a scoped always-on ruleset, and a composer-dock pill. Verified, reversible, MIT, no runtime dependencies.",
   "license": "MIT",
   "author": "Chonwai",
   "homepage": "https://github.com/Chonwai/dsh-ponytail#readme",
