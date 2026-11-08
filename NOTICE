@@ -1,0 +1,30 @@
+@chonwai/dsh-ponytail
+Copyright (c) 2026 Chonwai
+Licensed under the MIT License (see LICENSE).
+
+Third-party attribution
+-----------------------
+
+Ponytail
+  Upstream: https://github.com/DietrichGebert/ponytail
+  Version:  v5.3.3 (git tag v5.3.3, released 2026-10-29)
+  License:  MIT
+  Copyright (c) 2026 DietrichGebert
+
+Vendored unchanged (byte-identical, sha256 pinned in checksums.txt):
+  skills/ponytail/SKILL.md
+  skills/ponytail-review/SKILL.md
+  skills/ponytail-audit/SKILL.md
+  skills/ponytail-debt/SKILL.md
+  skills/ponytail-gain/SKILL.md
+  skills/ponytail-help/SKILL.md
+
+Derived (not byte-identical to one upstream file):
+  rules.md
+    Contains the upstream `AGENTS.md` text verbatim (English, unchanged) plus a
+    Traditional-Chinese scope note ("code changes only; research/docs/reviews
+    stay complete") and attribution. The scope wrapper is this package's
+    addition; the upstream rules text is MIT, Copyright (c) 2026 DietrichGebert.
+
+This package does not bundle the upstream logo, hooks, commands, benchmark or
+any other upstream asset. The icon.svg is original artwork.

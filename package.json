@@ -1,0 +1,65 @@
+{
+  "name": "@chonwai/dsh-ponytail",
+  "version": "1.0.0",
+  "description": "Ponytail as a DeepSeek Harness bundle: six skills, a scoped always-on ruleset, and a composer-dock pill.",
+  "license": "MIT",
+  "author": "Chonwai",
+  "homepage": "https://github.com/Chonwai/dsh-ponytail#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chonwai/dsh-ponytail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chonwai/dsh-ponytail/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-bundle",
+    "ponytail",
+    "skills",
+    "ai-agent"
+  ],
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "icon": "./icon.svg",
+  "files": [
+    "lib/**/*.js",
+    "skills",
+    "rules.md",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "README.zh-TW.md",
+    "INSTALL.md",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md",
+    "checksums.txt"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.2-alpha.3 <0.3.0"
+  }
+}

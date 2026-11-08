@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Ponytail">
+  <title>Ponytail</title>
+  <rect width="64" height="64" rx="16" fill="#111827"/>
+  <path d="M22 20c0 0 0 13 7 17c6 3.6 13 2.2 13 9" fill="none" stroke="#f9fafb" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="22" cy="17" r="6" fill="#f9fafb"/>
+  <circle cx="42" cy="46" r="6" fill="#f59e0b"/>
+  <path d="M40 12l8 8M48 12l-8 8" stroke="#f9fafb" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

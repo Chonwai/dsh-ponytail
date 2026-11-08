@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: offline checks (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Verify vendored checksums
+        run: grep -v '^#' checksums.txt | sha256sum -c -
+
+      - name: Static syntax checks
+        run: |
+          node --check lib/index.js
+          node --check lib/client.js
+          node --check tests/host-smoke.mjs
+          node --check tests/client-smoke.mjs
+
+      - name: Manifest and asset parsing
+        run: |
+          node -e "JSON.parse(require('node:fs').readFileSync('package.json','utf8'))"
+          python3 - <<'PY'
+          import json, yaml
+          for path in ['locale/en.json', 'locale/zh.json']:
+              json.load(open(path, encoding='utf-8'))
+          yaml.safe_load(open('cordis.patch.yml', encoding='utf-8'))
+          yaml.safe_load(open('.github/workflows/ci.yml', encoding='utf-8'))
+          print('JSON/YAML parse OK')
+          PY
+
+      - name: Offline host + client checks
+        run: bash tests/offline-check.sh

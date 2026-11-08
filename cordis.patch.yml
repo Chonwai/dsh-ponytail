@@ -1,0 +1,17 @@
+# Bundle patch for @chonwai/dsh-ponytail.
+#
+# This file is applied once when the profile lists the bundle in
+# `dsh.profile.bundles`. It inserts the single plugin row that mounts the host
+# half; the browser half is served by the Client module system from the same
+# package (see `dsh.client` in package.json).
+#
+# Do NOT insert this row a second time from the profile's own
+# `cordis.patch.yml`: `insert` does not dedupe ids, and a second row would mount
+# the plugin twice (two skill registrations and two prompt sections). To change
+# the level, override this row by id from the profile patch instead; the
+# override replaces the whole `config`.
+- insert:
+    - id: ponytail
+      name: '@chonwai/dsh-ponytail'
+      config:
+        defaultMode: full

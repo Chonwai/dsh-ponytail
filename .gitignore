@@ -1,0 +1,13 @@
+# Dependencies (this package has none; keep the ignore for contributors)
+node_modules/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local logs and test scratch
+*.log
+coverage/
+.tmp/
