@@ -75,6 +75,11 @@ result is possible. The kit lives in `bench/`; the protocol:
    - in the review task, A catches at least 80% of the planted must-fix bugs without inventing
      "must fix" findings that are not real.
 
+**Run status:** one two-task pilot was executed on 2026-11-09 (T2 and T5, n = 2 per arm) and showed
+no effectiveness signal — the bundle-on run added unrequested output formatting once. That pilot is a
+mechanism test, not a result; see `bench/pilot-2026-11-09.md`. The six-task run above is still
+required before any README or release note claims that the bundle makes changes smaller.
+
    n = 6 per arm is indicative, not publishable. Report the per-task deltas and the direction count;
    do not turn a 3-line reduction into a marketing number. If the rule fails, publish that result
    rather than moving the thresholds.

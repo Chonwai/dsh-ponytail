@@ -5,6 +5,9 @@ six small tasks, a score sheet and the fairness rules. The question it answers i
 **with the bundle on versus off, does the same model produce smaller, safer changes — and does the
 review skill catch real bugs?**
 
+A two-task pilot on 2026-11-09 is recorded in [`pilot-2026-11-09.md`](pilot-2026-11-09.md).
+It proves the mechanism works; it is not evidence of effectiveness.
+
 ## What you need
 
 - One DSH profile with this bundle installed and enabled.
