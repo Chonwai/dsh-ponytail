@@ -41,10 +41,11 @@ for path in \
   skills/ponytail-debt/SKILL.md skills/ponytail-gain/SKILL.md skills/ponytail-help/SKILL.md \
   locale/en.json locale/zh.json checksums.txt \
   README.md README.zh-TW.md INSTALL.md LICENSE NOTICE CHANGELOG.md \
-  docs/ARCHITECTURE.md docs/BRANDING.md docs/VERIFICATION.md; do
+  docs/ARCHITECTURE.md docs/BRANDING.md docs/VERIFICATION.md docs/RELEASE.md; do
   if [ -f "$pkg/$path" ]; then ok "shipped: $path"; else bad "missing from tarball: $path"; fi
 done
 if [ -e "$pkg/tests" ]; then bad "tarball unexpectedly ships tests/"; else ok "tests/ not shipped (dev-only)"; fi
+if [ -e "$pkg/bench" ]; then bad "tarball unexpectedly ships bench/"; else ok "bench/ not shipped (dev-only)"; fi
 
 echo "== manifest of the shipped package"
 if node - "$pkg/package.json" <<'NODE'
@@ -56,7 +57,7 @@ const checks = [
   ['declares dsh.bundle.patch', typeof p.dsh?.bundle?.patch === 'string'],
   ['declares dsh.client for the web platform', p.dsh?.client?.platform === 'web'],
   ['no runtime dependencies', Object.keys(p.dependencies || {}).length === 0],
-  ['no install scripts', !p.scripts?.install && !p.scripts?.postinstall],
+  ['no install scripts', !['install','preinstall','postinstall','prepare'].some((h) => p.scripts?.[h])],
   ['engines.dsh covers the tested window', typeof p.engines?.dsh === 'string'],
   ['keywords keep the upstream name', (p.keywords || []).includes('ponytail')],
 ];
