@@ -99,6 +99,25 @@ if node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"
 else
   bad "package must not declare runtime dependencies"
 fi
+
+# Discoverability guard: the upstream and former names must survive in the
+# manifest even though the package slug is Rein. Losing them silently means
+# losing the search traffic that finds the project at all.
+if node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8"));process.exit((p.keywords||[]).includes("ponytail")?0:1)' "$PACKAGE_DIR/package.json"; then
+  ok "keywords keep the upstream name: ponytail"
+else
+  bad "keywords must include ponytail (search discoverability)"
+fi
+if node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8"));process.exit((p.keywords||[]).includes("dsh-ponytail")?0:1)' "$PACKAGE_DIR/package.json"; then
+  ok "keywords keep the former name: dsh-ponytail"
+else
+  bad "keywords must include dsh-ponytail (old-name discoverability)"
+fi
+if node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8"));process.exit(/Ponytail/.test(p.description||"")?0:1)' "$PACKAGE_DIR/package.json"; then
+  ok "description keeps the upstream name: Ponytail"
+else
+  bad "description must mention Ponytail (package search)"
+fi
 if node -e 'const p=JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8"));const need=["." ,"./client","./cordis.patch.yml","./locale/*.json","./icon","./package.json"];process.exit(need.every(k=>k in p.exports)?0:1)' "$PACKAGE_DIR/package.json"; then
   ok "package exports the required entry points"
 else
