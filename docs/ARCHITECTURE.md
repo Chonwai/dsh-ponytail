@@ -6,7 +6,7 @@ which contracts each half must satisfy, and what happens when the row is toggled
 ## The shape
 
 ```
-cordis.patch.yml           one `insert` row: id `ponytail`, name `@chonwai/dsh-rein`
+cordis.patch.yml           one `insert` row: id `rein`, name `@chonwai/dsh-rein`
 lib/index.js               host half, runs when the row activates
 lib/client.js              client half, runs when the Web client boots
 skills/<name>/SKILL.md     six vendored Ponytail skills (upstream v5.3.3)

@@ -55,8 +55,10 @@ brand can always be added later.
 
 1. GitHub profile repository `Chonwai/Chonwai` (currently absent): who you are, what you ship, the
    bundle, the verification protocol, the releases. Pin `dsh-rein`.
-2. Submit the bundle to the community registry `dshworks/awesome-dsh-plugins` — it listed no
-   Ponytail entry at all on 2026-11-09. One PR against `data/plugins.json`, with the entry below.
+2. Submit the bundle to the community registry `dshworks/awesome-dsh-plugins`. On 2026-11-09 it
+   listed no entry from this maintainer, but it already carries 14 entries whose repositories use
+   the `dsh-ponytail*` names — the differentiation is the four-level verification protocol, not
+   name scarcity. One PR against `data/plugins.json`, with the entry below.
 
 Its spam gate asks for a real install path, a non-template history and an honest `verifiedAgainst`;
 all three are true here.
