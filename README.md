@@ -211,6 +211,13 @@ tests/                offline-check.sh, host-smoke.mjs, client-smoke.mjs
 INSTALL.md            detailed install / migration / rollback / troubleshooting
 ```
 
+## Related bundles
+
+- [`@chonwai/dsh-uupm`](https://github.com/Chonwai/dsh-uupm) — UI/UX Pro Max
+  design-intelligence skills, data and Python search scripts.
+- [`@chonwai/dsh-gsap-skills`](https://github.com/Chonwai/dsh-gsap-skills) — the
+  official GSAP skills with four documented corrections.
+
 ## License and attribution
 
 MIT — see [`LICENSE`](LICENSE). The six skill files are vendored from

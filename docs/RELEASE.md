@@ -8,7 +8,7 @@ yet.
 ## Preconditions
 
 1. `npm test` → `RESULT: PASS (84 checks)`.
-2. `npm run test:consumer` → `RESULT: PASS (38 checks)` (the tarball a stranger downloads).
+2. `npm run test:consumer` → `RESULT: PASS (40 checks)` (the tarball a stranger downloads).
 3. CI green on `main` for the commit you are about to tag.
 4. `docs/VERIFICATION.md` L1 and L2 re-run on this machine after the last code change.
 5. The install/upgrade path in `INSTALL.md` matches the version you are publishing.

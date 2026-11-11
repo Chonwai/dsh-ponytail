@@ -195,6 +195,13 @@ tests/                offline-check.sh、host-smoke.mjs、client-smoke.mjs
 INSTALL.md            完整安裝／遷移／回滾／疑難排解
 ```
 
+## 相關 bundle
+
+- [`@chonwai/dsh-uupm`](https://github.com/Chonwai/dsh-uupm)——UI/UX Pro Max
+  設計智慧 skills、資料與 Python 搜尋腳本。
+- [`@chonwai/dsh-gsap-skills`](https://github.com/Chonwai/dsh-gsap-skills)——GSAP
+  官方 skills，附 4 項已記錄的內容更正。
+
 ## 授權與 attribution
 
 MIT — 見 [`LICENSE`](LICENSE)。6 個 skill 檔 vendored 自

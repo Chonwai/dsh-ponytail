@@ -4,7 +4,8 @@
 
 | Version | Status |
 |---|---|
-| 1.0.x | Supported with fixes for security issues |
+| 2.0.x | Supported with fixes for security issues |
+| 1.0.x | No longer supported; upgrade to 2.0.x |
 
 This package is a DeepSeek Harness bundle that ships instructions (skills and a
 rules document) plus a small host plugin and a client decoration.

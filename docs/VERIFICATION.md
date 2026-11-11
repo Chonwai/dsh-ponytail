@@ -11,7 +11,7 @@ criterion, and what it cannot prove.
 ## L0 — Package contract (offline, minutes, no DSH profile)
 
 ```bash
-npm test        # acceptance gate: prints RESULT: PASS (81 checks)
+npm test        # acceptance gate: prints RESULT: PASS (84 checks)
 npm run check   # node --check on lib/ and tests/
 npm run smoke   # offline host and client smoke suites
 ```
