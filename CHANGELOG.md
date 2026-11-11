@@ -4,6 +4,40 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project uses
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-11-11
+
+### Fixed
+
+- **Layer-first skill resolution.** The docs and the host-half comment claimed that runtime
+  registrations outrank file roots (250 vs 400/500) and that the host half skips same-name files
+  with a warning instead of silently shadowing them. That is false on the standard Web preset:
+  `skill-filesystem` is mounted inside the agent preset's scope while the host filesystem row is
+  disabled, and the **nearest layer wins a duplicate name outright** — ranks only order duplicates
+  inside one layer. Any `ponytail*` copy under `$DSH_HOME/skills`, `~/.agents/skills` or a project
+  `.agents/skills` therefore wins over this bundle's global runtime registrations. The plugin's
+  `skills.list({})` read is unscoped (global layer only), so it cannot see scoped file copies and
+  cannot warn about them; the skip branch is best-effort for another **global** provider. Corrected
+  in `lib/index.js` (comment only), README/README.zh-TW, `INSTALL.md` (including the two impossible
+  troubleshooting rows), and `docs/ARCHITECTURE.md`; a migration preflight was added. No runtime
+  behavior changed.
+- Stale gate counts: `docs/VERIFICATION.md` now says 84 checks (was 81) and
+  `docs/RELEASE.md` says 40 consumer checks (was 38).
+- `SECURITY.md` supported versions now list 2.0.x and mark 1.0.x unsupported.
+
+### Added
+
+- `tools/check-release.sh` and the `release:check` script: version mirrors (package/lib/tests/
+  checksums), checksum verification, tag==HEAD and a clean tree when run in git (SKIP from an
+  extracted tarball), and npm-pack completeness. CI runs it on `v*` tags.
+- `tests/` and `tools/` ship in the npm tarball so `release:check` also runs from an extracted
+  package; the consumer smoke reflects that.
+- README "Related bundles" links `dsh-uupm` and `dsh-gsap-skills`.
+
+### Notes
+
+- v2.0.1 aligns the tag with `main` after 15 post-v2.0.0 commits. No host/client behavior, vendored
+  skill, or rules text changed.
+
 ## [2.0.0] - 2026-11-09
 
 ### Changed (breaking)

@@ -1,6 +1,6 @@
 {
   "name": "@chonwai/dsh-rein",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "description": "Rein \u2014 Ponytail for DeepSeek Harness (formerly @chonwai/dsh-ponytail): six skills, a scoped always-on ruleset, and a composer-dock pill. Verified, reversible, MIT, no runtime dependencies.",
   "license": "MIT",

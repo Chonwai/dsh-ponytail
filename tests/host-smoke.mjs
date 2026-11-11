@@ -230,7 +230,7 @@ await check('frontmatter parser handles all six vendored files', () => {
 await check('module surface matches the v1 contract (no Config export)', async () => {
   const module = await import('../lib/index.js');
   assert.equal(pluginName, 'rein');
-  assert.equal(pluginVersion, '2.0.0');
+  assert.equal(pluginVersion, '2.0.1');
   assert.deepEqual(LEVELS, ['lite', 'full', 'ultra', 'review', 'off']);
   assert.equal(typeof apply, 'function');
   assert.ok(!('Config' in module), 'v1 must not export a Config schema');
