@@ -42,9 +42,10 @@
   },
   "scripts": {
     "test": "bash tests/offline-check.sh",
-    "check": "node --check lib/index.js && node --check lib/client.js && node --check tests/host-smoke.mjs && node --check tests/client-smoke.mjs",
+    "check": "node --check lib/index.js && node --check lib/client.js && node --check tests/host-smoke.mjs && node --check tests/client-smoke.mjs && bash -n tools/check-release.sh",
     "smoke": "node tests/host-smoke.mjs && node tests/client-smoke.mjs",
-    "test:consumer": "bash tests/consumer-smoke.sh"
+    "test:consumer": "bash tests/consumer-smoke.sh",
+    "release:check": "bash tools/check-release.sh"
   },
   "icon": "./icon.svg",
   "files": [
@@ -61,7 +62,9 @@
     "LICENSE",
     "NOTICE",
     "CHANGELOG.md",
-    "checksums.txt"
+    "checksums.txt",
+    "tests",
+    "tools"
   ],
   "dsh": {
     "bundle": {

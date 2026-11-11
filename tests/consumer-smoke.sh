@@ -44,7 +44,11 @@ for path in \
   docs/ARCHITECTURE.md docs/BRANDING.md docs/VERIFICATION.md docs/RELEASE.md; do
   if [ -f "$pkg/$path" ]; then ok "shipped: $path"; else bad "missing from tarball: $path"; fi
 done
-if [ -e "$pkg/tests" ]; then bad "tarball unexpectedly ships tests/"; else ok "tests/ not shipped (dev-only)"; fi
+if [ -f "$pkg/tests/offline-check.sh" ] && [ -f "$pkg/tools/check-release.sh" ]; then
+  ok "tests/ and tools/ ship so release:check runs from the artifact"
+else
+  bad "tarball is missing tests/ or tools/ (release:check cannot run)"
+fi
 if [ -e "$pkg/bench" ]; then bad "tarball unexpectedly ships bench/"; else ok "bench/ not shipped (dev-only)"; fi
 
 echo "== manifest of the shipped package"

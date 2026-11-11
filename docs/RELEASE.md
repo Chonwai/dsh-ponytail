@@ -12,6 +12,8 @@ yet.
 3. CI green on `main` for the commit you are about to tag.
 4. `docs/VERIFICATION.md` L1 and L2 re-run on this machine after the last code change.
 5. The install/upgrade path in `INSTALL.md` matches the version you are publishing.
+6. `npm run release:check` passes on the tagged commit (CI also runs it for `v*`
+   tags; from an extracted tarball it SKIPs the git-only tag/clean-tree checks).
 
 ## Publish to npm
 
