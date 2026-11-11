@@ -19,8 +19,8 @@ managed profile.
 | Backout | toggle the bundle off, or remove it (§7) |
 
 Recommended: confirm the six skills are **not** also present as files before enabling this bundle
-(§6). Two sources with the same skill names make the catalog confusing even though the host half
-guards against double-registration.
+(§6). File-level copies are discovered in the agent scope by the standard preset and win over this
+bundle's global runtime registrations, so the bundle's skills would be inert for the session.
 
 ## 1. Install from the Web UI (recommended for a local checkout)
 
@@ -130,11 +130,25 @@ The previous release `v1.0.1` stays available for anyone who still needs the old
 
 ## 6. Migrating from the file-level install
 
-The file-level route copies the same six skill names into `$DSH_HOME/skills` (skill rank 400) or
-`~/.agents/skills` (rank 500), and optionally adds a block into a repository's `AGENTS.md`.
-Runtime registrations from this bundle rank higher (250), so the two sources would compete for the
-same names. The host half skips names that are already provided and logs a warning; that is a
-guard, not a migration.
+DSH resolves skills **layer-first**: the standard Web preset mounts `skill-filesystem` inside the
+agent preset's scope and disables the host filesystem row, so the **nearest layer wins a duplicate
+name outright**. The file-level route copies the six names into `$DSH_HOME/skills` or
+`~/.agents/skills` (and optionally a project `.agents/skills`), where the preset's provider
+discovers them in the agent scope; those copies therefore take precedence over this bundle's global
+runtime registrations, regardless of the 250/400/500 ranks (which only order duplicates inside one
+layer). Remove them **before** enabling the bundle.
+
+Preflight:
+
+```bash
+test -d ~/.agents/skills/ponytail && echo "file copy wins"
+test -d "${DSH_HOME:-$HOME/.dsh}/skills/ponytail" && echo "file copy wins"
+```
+
+The host half's `skills.list({})` read is unscoped and best-effort: it can detect another
+**global** provider (for example a host-enabled filesystem row) and then skip with a warning, but it
+cannot see per-agent scoped discovery. It will not warn about scoped file copies; the migration
+below is the real guard.
 
 Checklist, in order:
 
@@ -151,9 +165,11 @@ Checklist, in order:
       If a repository `AGENTS.md` also carries a Ponytail block, delete that block by hand.
 - [ ] 3. Confirm the clean state: a new session's catalog no longer lists `ponytail*`, and
       `~/.dsh/skills` / `~/.agents/skills` no longer contain the six directories.
-- [ ] 4. If you installed the bundle **before** step 2, its duplicate detection skipped the six
-      names. Toggle the bundle (or the `ponytail` row) **off → on**, or restart DSH, so registration
-      runs again against the clean catalog.
+- [ ] 4. If the bundle was enabled while a **host-level (global)** filesystem provider owned the
+      names, its duplicate detection skipped them: toggle the bundle (or the `ponytail` row)
+      **off → on**, or restart DSH, after removing. Under the standard Web preset the scoped copies
+      are invisible to that read, so the bundle registered globally; removing them makes it the
+      winning entry at the next pre-step (a toggle is not required, but it is harmless).
 - [ ] 5. Verify with §4.
 - [ ] 6. To go back: remove the bundle (§7), then copy the six `SKILL.md` files back into
       `$DSH_HOME/skills` from the upstream release.
@@ -175,8 +191,8 @@ Removing the bundle does not reinstall file-level skills. Pick one strategy.
 |---|---|---|
 | Plugins page shows the bundle with an **error** | package not readable, bundle patch invalid, or an engine mismatch | check the startup diagnostics; confirm `node --check lib/*.js` and that `engines.dsh` accepts your DSH version; reinstall |
 | Bundle enabled but the row is **inactive/failed** | a host-side exception or a missing optional service. Missing `skills`/`systemPrompt` alone only warns, but a module import error fails the row | read the startup warnings; if you changed code, reinstall; a replaced package needs a restart for a fresh module generation |
-| No `ponytail*` in a new session's catalog, but Plugins shows the bundle | the six names were already provided when the plugin mounted (file-level install still present), so registration was skipped | remove the file-level skills, then toggle the row off/on (§6) |
-| Catalog has duplicates of `ponytail*` (two providers) | file-level and runtime copies both present | remove the file-level install; runtime wins but the catalog is confusing |
+| A `ponytail*` skill body is an old or edited file copy, not the bundle's v5.3.3 text | file-level copies are discovered in the agent's scope and win layer-first; the bundle's unscoped catalog read cannot warn about scoped copies | run the §6 preflight and move the file copies out; the bundle becomes the winning entry at the next pre-step |
+| No `ponytail*` in a new session's catalog after removing the file copies | the row was toggled, a host-level provider caused the skip path, or the session predates registration | toggle the row off/on or restart DSH, then check §4 |
 | `skill(...)` fails with `source must be a string` after you updated files | the Host still runs the module generation imported earlier | toggle the bundle off/on in **Plugins** (or restart DSH), then verify §4 |
 | No pill in the composer dock | the client module did not load, or the Web client was not reloaded/rebuilt after install | confirm `dsh.client` in the installed package, restart/reload DSH, and check the browser console for module-load errors |
 | Pill overlaps the composer or captures clicks | it must be `pointer-events: none` and live inside the slot's flow | report with a screenshot; do not patch host DOM |

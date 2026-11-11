@@ -28,9 +28,13 @@ copies, and local behavior lives in `rules.md` and the plugin code (see `NOTICE`
 
 1. **Skills.** For each `skills/<name>/SKILL.md` it parses the frontmatter and calls
    `ctx.skills.register({ name, description, whenToUse?, source: 'bundled', content })`.
-   The host half first reads the catalog (`skills.list`) and skips a name another provider already
-   owns, warning with the migration step instead of shadowing it. Catalog read failures must never
-   disable the bundle; registration then proceeds blind.
+   Resolution is **layer-first**: the standard Web preset mounts `skill-filesystem` in the agent
+   scope and disables the host row, so file copies under `$DSH_HOME/skills`, `~/.agents/skills` or a
+   project `.agents/skills` win a duplicate name over these global registrations; ranks only order
+   duplicates inside one layer. The host half's `skills.list({})` read is **unscoped** (global layer
+   only) and best-effort: it can skip when another *global* provider owns a name, but it cannot see
+   scoped file copies and cannot warn about them. Remove file copies for the bundle to take effect.
+   Catalog read failures must never disable the bundle; registration then proceeds blind.
 2. **Rules.** It reads `rules.md` once and contributes one prompt section through
    `ctx.systemPrompt.section({ name: 'rein-rules', order: 700, text })`. `text` is a function so
    `defaultMode: 'off'` takes effect on the next assembly; the skills stay registered.

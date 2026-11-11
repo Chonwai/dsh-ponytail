@@ -119,18 +119,32 @@ suppress the always-on rules.
 
 ## Migrating from a file-level install
 
-If the six skills are already installed as files under `$DSH_HOME/skills` or `~/.agents/skills`,
-remove them **before** enabling this bundle:
+DSH resolves skills **layer-first**: the standard Web preset mounts `skill-filesystem` inside the
+agent preset's scope and disables the host filesystem row, so the **nearest layer wins a duplicate
+name outright**. Any `ponytail*` file copy under `$DSH_HOME/skills`, `~/.agents/skills`, or a project
+`.agents/skills` is therefore discovered in the agent's scope and takes precedence over this
+bundle's global runtime registrations — regardless of the 250/400/500 ranks, which only order
+duplicates inside one layer.
 
-1. Run the file-level uninstaller (or delete the six skill directories from `~/.dsh/skills` and
-   `~/.agents/skills`).
+Remove the six file copies **before** enabling the bundle. Preflight:
+
+```bash
+test -d ~/.agents/skills/ponytail && echo "file copy wins"
+test -d "${DSH_HOME:-$HOME/.dsh}/skills/ponytail" && echo "file copy wins"
+```
+
+1. Run the file-level uninstaller (or move the six `ponytail*` directories out of
+   `$DSH_HOME/skills` and `~/.agents/skills` instead of deleting them blindly).
 2. If a repository carries a Ponytail block in `AGENTS.md` and you want the bundle to own the
    always-on rules, strip that block too.
-3. Toggle the bundle row off/on (or restart DSH) so duplicate detection re-runs on the clean
-   catalog.
+3. If the bundle was enabled while a **host-level (global)** filesystem provider owned the names,
+   its duplicate detection skipped them; toggle the row off/on (or restart DSH) after removing.
+   With the standard Web preset, scoped copies are invisible to that read, so the bundle registers
+   globally; removing the copies makes it the winning entry at the next pre-step.
 
-The host half detects same-name skills and skips them with a warning rather than silently shadowing
-the file-level copies. Full checklist: [`INSTALL.md`](INSTALL.md#6-migrating-from-the-file-level-install).
+The host half's catalog read is unscoped and best-effort: it can detect another **global** provider,
+not per-agent scoped discovery, so it cannot warn about scoped file copies. Full checklist:
+[`INSTALL.md`](INSTALL.md#6-migrating-from-the-file-level-install).
 
 ## Security and privacy
 

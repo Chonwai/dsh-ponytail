@@ -109,14 +109,28 @@ band）在 DSH 不適用——DSH 的實情以下面的 v1 限制為準。
 
 ## 從檔案版安裝遷移
 
-如果 6 個 skills 已經以檔案形式安裝在 `$DSH_HOME/skills` 或 `~/.agents/skills`，請**先移除它們**
-再啟用 bundle：
+DSH 的 skill 解析是 **layer-first**：標準 Web preset 把 `skill-filesystem` 掛在 agent preset
+的 scope 裡，並停用 host filesystem row，因此**最近一層的同名條目直接勝出**。任何位於
+`$DSH_HOME/skills`、`~/.agents/skills` 或專案 `.agents/skills` 的 `ponytail*` 檔案副本，都會
+在 agent scope 被發現，優先於本 bundle 的 global runtime registrations——rank 250/400/500 只在
+同一層內排序。
 
-1. 跑檔案版卸載器（或手動刪掉 `~/.dsh/skills`、`~/.agents/skills` 下的 6 個目錄）。
+啟用 bundle 前先移除 6 個檔案副本。預檢：
+
+```bash
+test -d ~/.agents/skills/ponytail && echo "file copy wins"
+test -d "${DSH_HOME:-$HOME/.dsh}/skills/ponytail" && echo "file copy wins"
+```
+
+1. 跑檔案版卸載器（或把 6 個 `ponytail*` 目錄移出 `$DSH_HOME/skills`、`~/.agents/skills`，
+   不要直接刪）。
 2. 若某個 repo 的 `AGENTS.md` 有 Ponytail 區塊、而你想讓 bundle 接管 always-on 規則，把區塊也移除。
-3. 把 bundle row off/on（或重啟 DSH），讓 duplicate detection 在乾淨的 catalog 上重跑。
+3. 若 bundle 曾在 **host-level（global）** filesystem provider 持有名稱時啟用，duplicate
+   detection 會跳過；移除後把 row off/on（或重啟 DSH）。標準 Web preset 下 scoped 副本對該讀取
+   不可見，bundle 仍會註冊在 global；移除副本後，下一個 pre-step 就會成為勝出條目。
 
-host half 會偵測同名 skills 並跳過＋警告，不會靜默蓋掉檔案版。完整清單見
+host half 的 catalog 讀取是 unscoped、best-effort：只看得到 global provider，看不到 per-agent
+scoped 檔案副本，因此不會針對 scoped 副本警告。完整清單見
 [`INSTALL.md`](INSTALL.md#6-migrating-from-the-file-level-install)。
 
 ## 安全與隱私
